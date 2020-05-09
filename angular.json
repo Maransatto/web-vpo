@@ -25,11 +25,14 @@
             ],
             "styles": [
               "src/styles.css",
+              "node_modules/sleek-dashboard/dist/assets/plugins/nprogress/nprogress.css",
               "node_modules/sleek-dashboard/dist/assets/css/sleek.min.css"
             ],
             "scripts": [
               "node_modules/sleek-dashboard/dist/assets/plugins/jquery/jquery.min.js",
-              "node_modules/sleek-dashboard/dist/assets/js/sleek.bundle.js"
+              "node_modules/sleek-dashboard/dist/assets/plugins/slimscrollbar/jquery.slimscroll.min.js",
+              "node_modules/sleek-dashboard/dist/assets/plugins/nprogress/nprogress.js",
+              "node_modules/sleek-dashboard/dist/assets/js/sleek.bundle.min.js"
             ]
           },
           "configurations": {

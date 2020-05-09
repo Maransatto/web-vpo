@@ -20,8 +20,7 @@ export class SignUpComponent implements OnInit {
   errMsg: string;
 
   constructor(
-    private serverUserService: ServerUserService,
-    private userService: UserService
+    private serverUserService: ServerUserService
   ) { }
 
   ngOnInit() {
