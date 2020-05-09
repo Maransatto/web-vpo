@@ -24,9 +24,13 @@
               "src/assets"
             ],
             "styles": [
-              "src/styles.css"
+              "src/styles.css",
+              "node_modules/sleek-dashboard/dist/assets/css/sleek.min.css"
             ],
-            "scripts": []
+            "scripts": [
+              "node_modules/sleek-dashboard/dist/assets/plugins/jquery/jquery.min.js",
+              "node_modules/sleek-dashboard/dist/assets/js/sleek.bundle.js"
+            ]
           },
           "configurations": {
             "production": {
