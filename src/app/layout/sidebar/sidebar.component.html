@@ -1,5 +1,5 @@
   <aside class="left-sidebar bg-sidebar">
-    <div id="sidebar" class="sidebar sidebar-with-footer">
+    <div id="sidebar" class="sidebar">
       <!-- Aplication Brand -->
       <div class="app-brand">
         <a href="/index.html" title="Sleek Dashboard">
@@ -57,7 +57,7 @@
             <!-- ORÇAMENTO -->
             <li class="li_nav " routerLinkActive="active">
               <a [routerLink]="['/budget']">
-                <i class="mdi mdi-folder-multiple-outline"></i> <span class="nav-label">Orçamento</span>
+                <i class="mdi mdi-script-text"></i> <span class="nav-label">Orçamento</span>
               </a>
             </li>
 
@@ -66,7 +66,7 @@
             <!-- TODAS AS CONTAS -->
             <li class="li_nav " routerLinkActive="active">
               <a [routerLink]="['/all-accounts']">
-                <i class="mdi mdi-folder-multiple-outline"></i> <span class="nav-label">Todas as Contas</span>
+                <i class="mdi mdi-bank"></i> <span class="nav-label">Todas as Contas</span>
               </a>
             </li>
 
@@ -74,7 +74,7 @@
             <li  class="has-sub expand" >
               <a class="sidenav-item-link" href="javascript:void(0)" data-toggle="collapse" data-target="#abertas"
                 aria-expanded="false" aria-controls="abertas">
-                <i class="mdi mdi-contacts"></i>
+                <i class="mdi mdi-currency-usd"></i>
                 <span class="nav-text">Abertas</span> <b class="caret"></b>
               </a>
               <ul  class="collapse show" id="abertas" data-parent="#sidebar-menu">
@@ -105,7 +105,7 @@
             <li  class="has-sub" >
               <a class="sidenav-item-link" href="javascript:void(0)" data-toggle="collapse" data-target="#encerradas"
                 aria-expanded="false" aria-controls="encerradas">
-                <i class="mdi mdi-contacts"></i>
+                <i class="mdi mdi-archive"></i>
                 <span class="nav-text">Encerradas</span> <b class="caret"></b>
               </a>
               <ul  class="collapse" id="encerradas" data-parent="#sidebar-menu">
@@ -145,7 +145,7 @@
             <li  class="has-sub" >
               <a class="sidenav-item-link" href="javascript:void(0)" data-toggle="collapse" data-target="#reports"
                 aria-expanded="false" aria-controls="reports">
-                <i class="mdi mdi-file-document-box-multiple"></i>
+                <i class="mdi mdi-poll"></i>
                 <span class="nav-text">Relatórios</span> <b class="caret"></b>
               </a>
               <ul  class="collapse"  id="reports"
