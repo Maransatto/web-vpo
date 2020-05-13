@@ -17,6 +17,7 @@ import { SpendingReportComponent } from './reports/spending-report/spending-repo
 import { NetWorthReportComponent } from './reports/net-worth-report/net-worth-report.component';
 import { IncomeExpenseReportComponent } from './reports/income-expense-report/income-expense-report.component';
 import { SignInComponent } from './sign-in/sign-in.component';
+import { ToastrModule } from "ngx-toastr";
 
 @NgModule({
   declarations: [
@@ -39,7 +40,8 @@ import { SignInComponent } from './sign-in/sign-in.component';
     AppRoutingModule,
     FormsModule,
     ReactiveFormsModule,
-    HttpClientModule
+    HttpClientModule,
+    ToastrModule.forRoot()
   ],
   providers: [],
   bootstrap: [AppComponent]
