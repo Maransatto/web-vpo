@@ -1,8 +1,9 @@
+import { ShowMessageService } from './../show-message.service';
 import { UserService } from './../services/user.service';
 import { ServerUserService } from './../services/server-user.service';
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
-
+import { Router } from '@angular/router';
 @Component({
   selector: 'app-sign-up',
   templateUrl: './sign-up.component.html',
@@ -20,7 +21,9 @@ export class SignUpComponent implements OnInit {
   errMsg: string;
 
   constructor(
-    private serverUserService: ServerUserService
+    private serverUserService: ServerUserService,
+    private showMessage: ShowMessageService,
+    private router: Router
   ) { }
 
   ngOnInit() {
@@ -39,7 +42,8 @@ export class SignUpComponent implements OnInit {
     };
 
     this.serverUserService.signUp(user).subscribe(userData => {
-      console.log(userData);
+      this.showMessage.success('Usuário cadastrado com sucesso');
+      this.router.navigate(['/signin']);
     }, error => {
       console.log(error);
       this.errMsg = error.error.message;
