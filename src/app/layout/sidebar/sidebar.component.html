@@ -40,7 +40,7 @@
                 data-parent="#sidebar-menu">
                 <div class="sub-menu">
                     <li>
-                      <a class="sidenav-item-link" href="index.html">
+                      <a class="sidenav-item-link" href="#" data-toggle="modal" data-target="#novoContextoModal">
                         <span class="nav-text">Novo Contexto</span>
                       </a>
                     </li>
@@ -176,3 +176,33 @@
 
     </div>
   </aside>
+
+  <!-- Form Modal -->
+  <div class="modal fade" id="novoContextoModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalFormTitle" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalFormTitle">Novo Contexto</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <div class="form-group">
+            <label for="nomeNovoContexto">Nome</label>
+            <input
+                type="text"
+                class="form-control"
+                id="nomeNovoContexto"
+                placeholder="Ex: Familiar, Empresa, Igreja, etc"
+                [(ngModel)]="nomeContextoNovo"
+            >
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-danger btn-pill" data-dismiss="modal">Cancelar</button>
+          <button type="button" class="btn btn-primary btn-pill" data-dismiss="modal" (click)="onCriarContextoNovo()" >Criar contexto</button>
+        </div>
+      </div>
+    </div>
+  </div>

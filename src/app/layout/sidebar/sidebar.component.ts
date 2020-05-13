@@ -7,11 +7,17 @@ import { Component, OnInit } from '@angular/core';
 })
 export class SidebarComponent implements OnInit {
 
-  nomeContexto = "Nome do Contexto";
+  nomeContextoAtual = 'Nome do Contexto';
+  nomeContextoNovo: string;
 
   constructor() { }
 
   ngOnInit() {
+  }
+
+  onCriarContextoNovo() {
+    console.log('novo contexto criado');
+
   }
 
 }
