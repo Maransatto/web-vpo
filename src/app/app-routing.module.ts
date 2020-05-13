@@ -1,3 +1,4 @@
+import { SignInComponent } from './sign-in/sign-in.component';
 import { IncomeExpenseReportComponent } from './reports/income-expense-report/income-expense-report.component';
 import { NetWorthReportComponent } from './reports/net-worth-report/net-worth-report.component';
 import { SpendingReportComponent } from './reports/spending-report/spending-report.component';
@@ -12,9 +13,10 @@ import { Routes, RouterModule } from '@angular/router';
 
 
 const routes: Routes = [
-  { path: '', redirectTo: 'budget', pathMatch: 'full' },
-  { path: '*', redirectTo: 'budget', pathMatch: 'full' },
+  { path: '', redirectTo: 'signin', pathMatch: 'full' },
+  { path: '*', redirectTo: 'signin', pathMatch: 'full' },
 
+  { path: 'signin', component: SignInComponent },
   { path: 'signup', component: SignUpComponent },
   {
     path: '',

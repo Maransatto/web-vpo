@@ -16,6 +16,7 @@ import { PayeesComponent } from './payees/payees.component';
 import { SpendingReportComponent } from './reports/spending-report/spending-report.component';
 import { NetWorthReportComponent } from './reports/net-worth-report/net-worth-report.component';
 import { IncomeExpenseReportComponent } from './reports/income-expense-report/income-expense-report.component';
+import { SignInComponent } from './sign-in/sign-in.component';
 
 @NgModule({
   declarations: [
@@ -30,7 +31,8 @@ import { IncomeExpenseReportComponent } from './reports/income-expense-report/in
     PayeesComponent,
     SpendingReportComponent,
     NetWorthReportComponent,
-    IncomeExpenseReportComponent
+    IncomeExpenseReportComponent,
+    SignInComponent
   ],
   imports: [
     BrowserModule,
