@@ -13,9 +13,9 @@ import { HeaderComponent } from './layout/header/header.component';
 import { ContextComponent } from './context/context.component';
 import { TransactionsComponent } from './transactions/transactions.component';
 import { PayeesComponent } from './payees/payees.component';
-import { SpendingReportComponent } from './spending-report/spending-report.component';
-import { NetWorthReportComponent } from './net-worth-report/net-worth-report.component';
-import { IncomeExpenseReportComponent } from './income-expense-report/income-expense-report.component';
+import { SpendingReportComponent } from './reports/spending-report/spending-report.component';
+import { NetWorthReportComponent } from './reports/net-worth-report/net-worth-report.component';
+import { IncomeExpenseReportComponent } from './reports/income-expense-report/income-expense-report.component';
 
 @NgModule({
   declarations: [
