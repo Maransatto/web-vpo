@@ -10,6 +10,12 @@ import { LayoutComponent } from './layout/layout.component';
 import { BudgetComponent } from './budget/budget.component';
 import { SidebarComponent } from './layout/sidebar/sidebar.component';
 import { HeaderComponent } from './layout/header/header.component';
+import { ContextComponent } from './context/context.component';
+import { TransactionsComponent } from './transactions/transactions.component';
+import { PayeesComponent } from './payees/payees.component';
+import { SpendingReportComponent } from './spending-report/spending-report.component';
+import { NetWorthReportComponent } from './net-worth-report/net-worth-report.component';
+import { IncomeExpenseReportComponent } from './income-expense-report/income-expense-report.component';
 
 @NgModule({
   declarations: [
@@ -18,7 +24,13 @@ import { HeaderComponent } from './layout/header/header.component';
     LayoutComponent,
     BudgetComponent,
     SidebarComponent,
-    HeaderComponent
+    HeaderComponent,
+    ContextComponent,
+    TransactionsComponent,
+    PayeesComponent,
+    SpendingReportComponent,
+    NetWorthReportComponent,
+    IncomeExpenseReportComponent
   ],
   imports: [
     BrowserModule,

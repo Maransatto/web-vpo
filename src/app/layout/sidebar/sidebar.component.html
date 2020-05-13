@@ -2,7 +2,7 @@
     <div id="sidebar" class="sidebar">
       <!-- Aplication Brand -->
       <div class="app-brand">
-        <a href="/index.html" title="Sleek Dashboard">
+        <a>
           <svg
             class="brand-icon"
             xmlns="http://www.w3.org/2000/svg"
@@ -20,7 +20,7 @@
               <path class="logo-fill-white" fill="#FFF" d="M11 4v25l8 4V0z" />
             </g>
           </svg>
-          <span class="brand-name text-truncate">{{ nomeContexto }}</span>
+          <span class="brand-name text-truncate">{{ nomeContextoAtual }}</span>
         </a>
       </div>
       <!-- begin sidebar scrollbar -->
@@ -45,7 +45,7 @@
                       </a>
                     </li>
                     <li >
-                      <a class="sidenav-item-link" href="analytics.html">
+                      <a class="sidenav-item-link" [routerLink]="['/context']" routerLinkActive="router-link-active" >
                         <span class="nav-text">Abrir Contexto</span>
                         <span class="badge badge-success">new</span>
                       </a>
@@ -64,8 +64,8 @@
             <hr class="separator mb-0" />
 
             <!-- TODAS AS CONTAS -->
-            <li class="li_nav " routerLinkActive="active">
-              <a [routerLink]="['/all-accounts']">
+            <li class="li_nav" routerLinkActive="active">
+              <a [routerLink]="['/transactions', 'all-accounts']" >
                 <i class="mdi mdi-bank"></i> <span class="nav-label">Todas as Contas</span>
               </a>
             </li>
@@ -80,19 +80,19 @@
               <ul  class="collapse show" id="abertas" data-parent="#sidebar-menu">
                 <div class="sub-menu">
                     <li>
-                      <a class="sidenav-item-link" href="chat.html">
+                      <a class="sidenav-item-link" [routerLink]="['/transactions', 'account', 1]" routerLinkActive="router-link-active" >
                         <span class="nav-text">Carteira</span>
                         <span class="badge badge-primary">R$ 100,00</span>
                       </a>
                     </li>
                     <li>
-                      <a class="sidenav-item-link" href="chat.html">
+                      <a class="sidenav-item-link" [routerLink]="['/transactions', 'account', 2]" routerLinkActive="router-link-active">
                         <span class="nav-text">Banco do Brasil</span>
                         <span class="badge badge-primary">R$ 2.355,49</span>
                       </a>
                     </li>
                     <li>
-                      <a class="sidenav-item-link" href="chat.html">
+                      <a class="sidenav-item-link" [routerLink]="['/transactions', 'account', 3]" routerLinkActive="router-link-active">
                         <span class="nav-text">Nubank</span>
                         <span class="badge badge-danger">R$ -5,00</span>
                       </a>
@@ -111,7 +111,7 @@
               <ul  class="collapse" id="encerradas" data-parent="#sidebar-menu">
                 <div class="sub-menu">
                     <li>
-                      <a class="sidenav-item-link" href="chat.html">
+                      <a class="sidenav-item-link" [routerLink]="['/transactions', 'account', 3]" routerLinkActive="router-link-active" >
                         <span class="nav-text">Next</span>
                         <span class="badge badge-primary">R$ 0,00</span>
                       </a>
@@ -122,23 +122,12 @@
 
             <hr class="separator mb-0" />
 
-            <!-- CONTATOS -->
-            <li  class="has-sub" >
-              <a class="sidenav-item-link" href="javascript:void(0)" data-toggle="collapse" data-target="#contatos"
-                aria-expanded="false" aria-controls="contatos">
-                <i class="mdi mdi-contacts"></i>
-                <span class="nav-text">Contatos</span> <b class="caret"></b>
-              </a>
-              <ul  class="collapse" id="contatos" data-parent="#sidebar-menu">
-                <div class="sub-menu">
-                    <li>
-                      <a class="sidenav-item-link" href="chat.html">
-                        <span class="nav-text">Gerenciar Contatos</span>
 
-                      </a>
-                    </li>
-                </div>
-              </ul>
+            <!-- CONTATOS -->
+            <li class="li_nav" routerLinkActive="active">
+              <a [routerLink]="['/payees']" >
+                <i class="mdi mdi-contacts"></i> <span class="nav-label">Contatos</span>
+              </a>
             </li>
 
             <!-- RELATÓRIOS -->
@@ -153,17 +142,17 @@
                 <div class="sub-menu">
 
                       <li>
-                        <a class="sidenav-item-link" href="alert.html">
+                        <a class="sidenav-item-link" [routerLink]="['/spending']" routerLinkActive="router-link-active" >
                           <span class="nav-text">Gastos</span>
                         </a>
                       </li>
                       <li>
-                        <a class="sidenav-item-link" href="badge.html">
+                        <a class="sidenav-item-link" [routerLink]="['/net-worth']" routerLinkActive="router-link-active" >
                           <span class="nav-text">Patrimônio</span>
                         </a>
                       </li>
                       <li>
-                        <a class="sidenav-item-link" href="badge.html">
+                        <a class="sidenav-item-link" [routerLink]="['/income-expense']" routerLinkActive="router-link-active" >
                           <span class="nav-text">Entrada X Saída</span>
                         </a>
                       </li>

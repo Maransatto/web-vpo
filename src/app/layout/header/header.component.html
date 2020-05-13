@@ -34,17 +34,19 @@
               </div>
             </li>
 
-            <li>
+            <!-- <li>
               <a href="user-profile.html">
                 <i class="mdi mdi-account"></i> Meu perfil
               </a>
             </li>
             <li class="right-sidebar-in">
               <a href="javascript:0"> <i class="mdi mdi-settings"></i> Configurações </a>
-            </li>
+            </li> -->
 
-            <li class="dropdown-footer">
-              <a href="index.html"> <i class="mdi mdi-logout"></i> Sair </a>
+            <!-- TODO: incluir footer quando incluir novos itens acima -->
+            <!-- <li class="dropdown-footer"> -->
+            <li routerLinkActive="active">
+              <a (click)="logOff()" [routerLink]="['/signup']" routerLinkActive="router-link-active" > <i class="mdi mdi-logout"></i> Sair </a>
             </li>
           </ul>
         </li>

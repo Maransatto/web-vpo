@@ -15,4 +15,8 @@ export class HeaderComponent implements OnInit {
   ngOnInit() {
   }
 
+  logOff() {
+    console.log('remover token e redirecionar');
+  }
+
 }
