@@ -1,3 +1,4 @@
+import { AuthService } from './auth.service';
 import { SignInComponent } from './sign-in/sign-in.component';
 import { IncomeExpenseReportComponent } from './reports/income-expense-report/income-expense-report.component';
 import { NetWorthReportComponent } from './reports/net-worth-report/net-worth-report.component';
@@ -22,14 +23,14 @@ const routes: Routes = [
     path: '',
     component: LayoutComponent,
     children: [
-      { path: 'budget', component: BudgetComponent },
-      { path: 'context', component: ContextComponent },
-      { path: 'transactions/all-accounts', component: TransactionsComponent },
-      { path: 'transactions/account/:id_conta', component: TransactionsComponent },
-      { path: 'payees', component: PayeesComponent},
-      { path: 'spending', component: SpendingReportComponent},
-      { path: 'net-worth', component: NetWorthReportComponent},
-      { path: 'income-expense', component: IncomeExpenseReportComponent}
+      { path: 'budget', component: BudgetComponent, canActivate: [AuthService] },
+      { path: 'context', component: ContextComponent, canActivate: [AuthService] },
+      { path: 'transactions/all-accounts', component: TransactionsComponent, canActivate: [AuthService] },
+      { path: 'transactions/account/:id_conta', component: TransactionsComponent, canActivate: [AuthService]},
+      { path: 'payees', component: PayeesComponent, canActivate: [AuthService]},
+      { path: 'spending', component: SpendingReportComponent, canActivate: [AuthService]},
+      { path: 'net-worth', component: NetWorthReportComponent, canActivate: [AuthService]},
+      { path: 'income-expense', component: IncomeExpenseReportComponent, canActivate: [AuthService]}
     ]
   }
 

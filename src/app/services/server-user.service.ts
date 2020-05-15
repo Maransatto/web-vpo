@@ -28,4 +28,8 @@ export class ServerUserService {
   public signUp(user: { nome: string, email: string, password: string }): Observable<any> {
     return this.http.post(`${SERVER_URL}/usuarios`, user, this.httpOptions);
   }
+
+  public signIn(user: { email: string, password: string }): Observable<any> {
+    return this.http.post(`${SERVER_URL}/usuarios/login`, user, this.httpOptions);
+  }
 }

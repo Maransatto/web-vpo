@@ -1,3 +1,5 @@
+import { AuthService } from './../../auth.service';
+import { UserService } from './../../services/user.service';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
@@ -7,16 +9,27 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HeaderComponent implements OnInit {
 
-  nomeUsuario = 'Fernando Silva Maransatto';
-  emailUsuario = 'fernando.maransatto@gmail.com';
+  nomeUsuario: string;
+  emailUsuario: string;
 
-  constructor() { }
+  constructor(
+    private userService: UserService,
+    private authService: AuthService
+  ) { }
 
   ngOnInit() {
+    this.nomeUsuario = this.userService.nome;
+    this.emailUsuario = this.userService.email;
   }
 
-  logOff() {
-    console.log('remover token e redirecionar');
+  logout() {
+    this.userService.load().then((state) => {
+      this.userService.clear();
+    }).finally(() => {
+      this.userService.state$.subscribe(async state => {
+        this.authService.rootRedirect(state);
+      });
+    });
   }
 
 }

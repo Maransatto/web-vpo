@@ -21,6 +21,10 @@ export class UserService {
   state$: Observable<UserState>;
   private _state$: BehaviorSubject<UserState>;
 
+  static isAuthenticated(state) {
+    return state.token !== null && state.token !== undefined;
+  }
+
   get state(): UserState {
     return this._state$.getValue();
   }
@@ -29,7 +33,54 @@ export class UserService {
     return this.state.token;
   }
 
+  get nome(): string {
+    return this.state.nome;
+  }
+
+  get email(): string {
+    return this.state.email;
+  }
+
   private static newState() {
     return { id_usuario: null };
   }
+
+  async load(): Promise<UserState> {
+    const state = await JSON.parse(localStorage.getItem('user'));
+    console.log('user state', state);
+
+    if (state) {
+      this._state$.next(state);
+      return state;
+    } else {
+      return this.state;
+    }
+  }
+
+  save() {
+    localStorage.setItem('user', JSON.stringify(this.state));
+  }
+
+  clear() {
+    localStorage.removeItem('user');
+    this._state$.next(UserService.newState());
+  }
+
+  async updateUser(data) {
+    const state = this.state;
+
+    if (data.id_usuario)  { state.id_usuario  = data.id_usuario; }
+    if (data.token)       { state.token       = data.token; }
+    if (data.nome)        { state.nome        = data.nome; }
+    if (data.email)       { state.email       = data.email; }
+
+    this._state$.next(state);
+    this.save();
+    return state;
+  }
+
+  isAuthenticated() {
+    return UserService.isAuthenticated(this.state);
+  }
+
 }
