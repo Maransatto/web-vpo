@@ -70,6 +70,13 @@
               </a>
             </li>
 
+            <!-- TODAS AS CONTAS -->
+            <li class="li_nav">
+              <a href="#" data-toggle="modal" data-target="#novaContaModal">
+                <i class="mdi mdi-plus"></i> <span class="nav-label">Nova Conta</span>
+              </a>
+            </li>
+
             <!-- ABERTAS -->
             <li  class="has-sub expand" >
               <a class="sidenav-item-link" href="javascript:void(0)" data-toggle="collapse" data-target="#abertas"
@@ -122,7 +129,6 @@
 
             <hr class="separator mb-0" />
 
-
             <!-- CONTATOS -->
             <li class="li_nav" routerLinkActive="active">
               <a [routerLink]="['/payees']" >
@@ -166,12 +172,12 @@
     </div>
   </aside>
 
-  <!-- Form Modal -->
-  <div class="modal fade" id="novoContextoModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalFormTitle" aria-hidden="true">
+  <!-- Novo Contexto -->
+  <div class="modal fade" id="novoContextoModal" tabindex="-1" role="dialog" aria-labelledby="novoContextoTitle" aria-hidden="true">
     <div class="modal-dialog" role="document">
       <div class="modal-content">
         <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalFormTitle">Novo Contexto</h5>
+          <h5 class="modal-title" id="novoContextoTitle">Novo Contexto</h5>
           <button type="button" class="close" data-dismiss="modal" aria-label="Close">
             <span aria-hidden="true">&times;</span>
           </button>
@@ -191,6 +197,54 @@
         <div class="modal-footer">
           <button type="button" class="btn btn-danger btn-pill" data-dismiss="modal">Cancelar</button>
           <button type="button" class="btn btn-primary btn-pill" data-dismiss="modal" (click)="onCriarContextoNovo()" >Criar contexto</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Nova Conta -->
+  <div class="modal fade" id="novaContaModal" tabindex="-1" role="dialog" aria-labelledby="novaContaTitle" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="novaContaTitle">Nova Conta</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <div class="form-group">
+            <label for="nomeNovaConta">Nome</label>
+            <input
+                type="text"
+                class="form-control"
+                id="nomeNovaConta"
+                placeholder="Ex: Carteira"
+                [(ngModel)]="nomeNovaConta"
+            >
+          </div>
+          <div class="form-group">
+            <label for="tipoNovaConta">Tipo</label>
+            <select class="form-control" id="tipoNovaConta">
+              <option>Dinheiro</option>
+              <option>Conta Bancária</option>
+              <option>Crédito</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="saldoInicialNovaConta">Saldo Inicial</label>
+            <input
+                type="text"
+                class="form-control"
+                id="saldoInicialNovaConta"
+                placeholder="0,00"
+                [(ngModel)]="nomeNovaConta"
+            >
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-danger btn-pill" data-dismiss="modal">Cancelar</button>
+          <button type="button" class="btn btn-primary btn-pill" data-dismiss="modal" (click)="onCriarContextoNovo()" >Criar conta</button>
         </div>
       </div>
     </div>

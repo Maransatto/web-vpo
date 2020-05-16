@@ -1,0 +1,9 @@
+.btn-nova-conta {
+  position: relative;
+  margin-left: 27px;
+}
+.nav-label-conta {
+  transition: opacity 0.3s ease-in-out 0.3s;
+  visibility: visible;
+  opacity: 1;
+}

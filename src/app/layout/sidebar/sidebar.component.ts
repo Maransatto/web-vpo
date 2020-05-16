@@ -9,6 +9,7 @@ export class SidebarComponent implements OnInit {
 
   nomeContextoAtual = 'Nome do Contexto';
   nomeContextoNovo: string;
+  nomeNovaConta: string;
 
   constructor() { }
 
@@ -17,7 +18,10 @@ export class SidebarComponent implements OnInit {
 
   onCriarContextoNovo() {
     console.log('novo contexto criado');
+  }
 
+  onCriarContaNova() {
+    console.log('nova conta criada');
   }
 
 }
