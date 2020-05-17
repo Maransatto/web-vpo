@@ -16,8 +16,9 @@ import { PayeesComponent } from './payees/payees.component';
 import { SpendingReportComponent } from './reports/spending-report/spending-report.component';
 import { NetWorthReportComponent } from './reports/net-worth-report/net-worth-report.component';
 import { IncomeExpenseReportComponent } from './reports/income-expense-report/income-expense-report.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { SignInComponent } from './sign-in/sign-in.component';
-import { ToastrModule } from "ngx-toastr";
+import { ToastrModule } from 'ngx-toastr';
 
 @NgModule({
   declarations: [
@@ -41,6 +42,7 @@ import { ToastrModule } from "ngx-toastr";
     FormsModule,
     ReactiveFormsModule,
     HttpClientModule,
+    BrowserAnimationsModule,
     ToastrModule.forRoot()
   ],
   providers: [],
