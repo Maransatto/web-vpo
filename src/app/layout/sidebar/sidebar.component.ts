@@ -58,6 +58,8 @@ export class SidebarComponent implements OnInit {
       },
       (error) => {
         console.error(error);
+        this.showMessageService.error(error.error.message);
+        $('#novoContextoModal').modal('toggle');
       }
     );
 

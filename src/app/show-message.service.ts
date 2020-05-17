@@ -16,6 +16,15 @@ export class ShowMessageService {
       progressBar: true,
       easeTime: 500,
       closeButton: true
-    })
+    });
+  }
+
+  public error(message: string, title: string = 'Hummm...') {
+    this.toastr.error(message, title, {
+      timeOut: 5000,
+      progressBar: true,
+      easeTime: 500,
+      closeButton: true
+    });
   }
 }
