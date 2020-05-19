@@ -56,6 +56,7 @@ export class SidebarComponent implements OnInit {
         this.userService.addContext(createdContext);
         this.showMessageService.success(data.message);
         $('#novoContextoModal').modal('toggle');
+        this.formNewContext.reset();
       },
       (error) => {
         console.error(error);
