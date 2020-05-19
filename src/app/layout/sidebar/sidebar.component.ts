@@ -4,6 +4,7 @@ import { ShowMessageService } from './../../show-message.service';
 import { ServerContextService } from './../../services/server-context.service';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 
 declare var $: any;
 
@@ -22,7 +23,8 @@ export class SidebarComponent implements OnInit {
   constructor(
     private serverContextService: ServerContextService,
     private showMessageService: ShowMessageService,
-    public userService: UserService
+    public userService: UserService,
+    private router: Router
   ) { }
 
   ngOnInit() {
@@ -55,6 +57,7 @@ export class SidebarComponent implements OnInit {
         this.showMessageService.success(data.message);
         $('#novoContextoModal').modal('toggle');
         this.formNewContext.reset();
+        this.router.navigate(['/context']);
       },
       (error) => {
         console.error(error);

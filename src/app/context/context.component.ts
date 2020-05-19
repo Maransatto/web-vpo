@@ -1,3 +1,4 @@
+import { Router } from '@angular/router';
 import { Context } from './../models/context';
 import { UserService } from './../services/user.service';
 import { ShowMessageService } from './../show-message.service';
@@ -14,7 +15,8 @@ export class ContextComponent implements OnInit {
   constructor(
     private serverContextService: ServerContextService,
     private showMessageService: ShowMessageService,
-    public userService: UserService
+    public userService: UserService,
+    private router: Router
   ) { }
 
   ngOnInit() {
@@ -44,6 +46,7 @@ export class ContextComponent implements OnInit {
 
   setCurrentContext(context: Context) {
     this.userService.setCurrentContext(context);
+    this.router.navigate(['/budget']);
   }
 
 }
