@@ -1,3 +1,4 @@
+import { Context } from './../models/context';
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable } from 'rxjs';
 
@@ -6,10 +7,7 @@ export interface UserState {
   token?: string;
   nome?: string;
   email?: string;
-  contextos?: {
-    id_contexto: number;
-    nome: string
-  }[];
+  contextos?: Context[];
 }
 
 @Injectable({
@@ -45,11 +43,9 @@ export class UserService {
     return this.state.email;
   }
 
-  get contexts(): { id_contexto: number, nome: string }[] {
+  get contexts(): Context[] {
     return this.state.contextos;
   }
-
-
 
   private static newState() {
     return { id_usuario: null };
@@ -95,7 +91,7 @@ export class UserService {
     return UserService.isAuthenticated(this.state);
   }
 
-  addContext(context: { id_contexto: number, nome: string }): void {
+  addContext(context: Context): void {
     this.state.contextos.push(context);
   }
 

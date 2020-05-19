@@ -1,3 +1,4 @@
+import { Context } from './../../models/context';
 import { UserService } from './../../services/user.service';
 import { ShowMessageService } from './../../show-message.service';
 import { ServerContextService } from './../../services/server-context.service';
@@ -52,8 +53,7 @@ export class SidebarComponent implements OnInit {
     const context = this.formNewContext.value;
     this.serverContextService.createContext(context).subscribe(
       (data) => {
-        const createdContext = data.contexto as {id_contexto: number, nome: string};
-        this.userService.addContext(createdContext);
+        this.userService.addContext(data.contexto as Context);
         this.showMessageService.success(data.message);
         $('#novoContextoModal').modal('toggle');
         this.formNewContext.reset();
