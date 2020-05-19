@@ -35,7 +35,7 @@ export class ServerContextService {
   }
 
   public deleteContext(contextId: number ): Observable<any> {
-    return this.http.get(`${SERVER_URL}/contextos/${contextId}`, this.httpOptions);
+    return this.http.delete(`${SERVER_URL}/contextos/${contextId}`, this.httpOptions);
   }
 
 }

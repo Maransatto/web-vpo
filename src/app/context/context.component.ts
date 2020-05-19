@@ -23,11 +23,21 @@ export class ContextComponent implements OnInit {
 
   getUserContexts() {
     this.serverContextService.getContexts().subscribe(
-      (data) => {
-        console.log(data);
-        this.userService.update(data);
-      },
+      (data) => { this.userService.update(data); },
       (error) => { console.error(error); this.showMessageService.error(error.error.message); }
+    );
+  }
+
+  deleteUserContext(contextId) {
+    this.serverContextService.deleteContext(contextId).subscribe(
+      (data) => {
+        console.log('deleted');
+        this.userService.deleteContext(contextId);
+      },
+      (error) => {
+        console.error(error);
+        this.showMessageService.error(error.error.message);
+      }
     );
   }
 

@@ -11,7 +11,7 @@
         <div class="card py-3 mb-4">
           <div class="card-body text-center">
             <h5 class="card-title text-primary">{{ context.nome }}</h5>
-            <button class="mdi mdi-delete mr-1 btn btn-outline-danger btn-sm"> </button>
+            <button class="mdi mdi-delete mr-1 btn btn-outline-danger btn-sm" (click)="deleteUserContext(context.id_contexto)" > </button>
             <button class="mdi mdi-arrow-expand-up mr-1 btn btn-outline-primary btn-sm"> Entrar</button>
           </div>
         </div>

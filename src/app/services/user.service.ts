@@ -95,4 +95,8 @@ export class UserService {
     this.state.contextos.push(context);
   }
 
+  deleteContext(contextId: number): void {
+    const index = this.state.contextos.findIndex(context => context.id_contexto === contextId);
+    this.state.contextos.splice(index, 1);
+  }
 }
