@@ -40,7 +40,7 @@ export class SignInComponent implements OnInit {
     };
 
     this.serverUserService.signIn(userLogin).subscribe(async data => {
-      await this.userService.updateUser(data);
+      await this.userService.update(data);
       this.authService.rootRedirect(data);
     }, error => {
       console.error(error);

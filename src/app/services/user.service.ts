@@ -6,6 +6,10 @@ export interface UserState {
   token?: string;
   nome?: string;
   email?: string;
+  contextos?: {
+    id_contexto: number;
+    nome: string
+  }[];
 }
 
 @Injectable({
@@ -41,6 +45,12 @@ export class UserService {
     return this.state.email;
   }
 
+  get contexts(): { id_contexto: number, nome: string }[] {
+    return this.state.contextos;
+  }
+
+
+
   private static newState() {
     return { id_usuario: null };
   }
@@ -66,13 +76,15 @@ export class UserService {
     this._state$.next(UserService.newState());
   }
 
-  async updateUser(data) {
+  async update(data) {
     const state = this.state;
 
     if (data.id_usuario)  { state.id_usuario  = data.id_usuario; }
     if (data.token)       { state.token       = data.token; }
     if (data.nome)        { state.nome        = data.nome; }
     if (data.email)       { state.email       = data.email; }
+
+    if (data.contextos) { state.contextos = data.contextos; }
 
     this._state$.next(state);
     this.save();
@@ -81,6 +93,10 @@ export class UserService {
 
   isAuthenticated() {
     return UserService.isAuthenticated(this.state);
+  }
+
+  addContext(context: { id_contexto: number, nome: string }): void {
+    this.state.contextos.push(context);
   }
 
 }

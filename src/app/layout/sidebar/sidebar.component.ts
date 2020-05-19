@@ -1,3 +1,4 @@
+import { UserService } from './../../services/user.service';
 import { ShowMessageService } from './../../show-message.service';
 import { ServerContextService } from './../../services/server-context.service';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
@@ -21,7 +22,8 @@ export class SidebarComponent implements OnInit {
 
   constructor(
     private serverContextService: ServerContextService,
-    private showMessageService: ShowMessageService
+    private showMessageService: ShowMessageService,
+    private userService: UserService
   ) { }
 
   ngOnInit() {
@@ -43,8 +45,6 @@ export class SidebarComponent implements OnInit {
   }
 
   onNewContextSubmit() {
-    console.log('onNewContextSubmit form valid', this.formNewContext.valid);
-
     if (!this.formNewContext.valid) {
       return;
     }
@@ -52,8 +52,9 @@ export class SidebarComponent implements OnInit {
     const context = this.formNewContext.value;
     this.serverContextService.createContext(context).subscribe(
       (data) => {
-        console.log(data);
-        this.showMessageService.success('Contexto incluído com sucesso');
+        const createdContext = data.contexto as {id_contexto: number, nome: string};
+        this.userService.addContext(createdContext);
+        this.showMessageService.success(data.message);
         $('#novoContextoModal').modal('toggle');
       },
       (error) => {
