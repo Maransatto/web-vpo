@@ -8,6 +8,7 @@ export interface UserState {
   nome?: string;
   email?: string;
   contextos?: Context[];
+  currentContext?: Context;
 }
 
 @Injectable({
@@ -41,6 +42,10 @@ export class UserService {
 
   get email(): string {
     return this.state.email;
+  }
+
+  get currentContext(): Context {
+    return this.state.currentContext;
   }
 
   get contexts(): Context[] {
@@ -92,11 +97,24 @@ export class UserService {
   }
 
   addContext(context: Context): void {
+    const state = this.state;
     this.state.contextos.push(context);
+    this._state$.next(state);
+    this.save();
   }
 
   deleteContext(contextId: number): void {
+    const state = this.state;
     const index = this.state.contextos.findIndex(context => context.id_contexto === contextId);
     this.state.contextos.splice(index, 1);
+    this._state$.next(state);
+    this.save();
+  }
+
+  setCurrentContext(context: Context): void {
+    const state = this.state;
+    state.currentContext = context;
+    this._state$.next(state);
+    this.save();
   }
 }

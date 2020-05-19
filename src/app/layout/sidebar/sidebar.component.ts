@@ -15,8 +15,6 @@ declare var $: any;
 })
 export class SidebarComponent implements OnInit {
 
-  nomeContextoAtual = 'Nome do Contexto';
-  nomeContextoNovo: string;
   nomeNovaConta: string;
 
   formNewContext: FormGroup;
@@ -24,7 +22,7 @@ export class SidebarComponent implements OnInit {
   constructor(
     private serverContextService: ServerContextService,
     private showMessageService: ShowMessageService,
-    private userService: UserService
+    public userService: UserService
   ) { }
 
   ngOnInit() {

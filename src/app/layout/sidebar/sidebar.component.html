@@ -20,7 +20,7 @@
               <path class="logo-fill-white" fill="#FFF" d="M11 4v25l8 4V0z" />
             </g>
           </svg>
-          <span class="brand-name text-truncate">{{ nomeContextoAtual }}</span>
+          <span class="brand-name text-truncate" *ngIf="userService.currentContext">{{ userService.currentContext.nome }}</span>
         </a>
       </div>
       <!-- begin sidebar scrollbar -->
@@ -30,23 +30,22 @@
         <ul class="nav sidebar-inner" id="sidebar-menu">
 
             <!-- CONTEXTO -->
-            <li  class="has-sub" >
+            <li class="has-sub expand" routerLinkActive="active">
               <a class="sidenav-item-link" href="javascript:void(0)" data-toggle="collapse" data-target="#contexto"
                 aria-expanded="false" aria-controls="contexto">
                 <i class="mdi mdi-view-dashboard-outline"></i>
                 <span class="nav-text">Contexto</span> <b class="caret"></b>
               </a>
-              <ul  class="collapse"  id="contexto"
-                data-parent="#sidebar-menu">
+              <ul class="collapse show"  id="contexto" data-parent="#sidebar-menu">
                 <div class="sub-menu">
                     <li>
                       <a class="sidenav-item-link" href="#" data-toggle="modal" data-target="#novoContextoModal">
                         <span class="nav-text">Novo Contexto</span>
                       </a>
                     </li>
-                    <li >
-                      <a class="sidenav-item-link" [routerLink]="['/context']" routerLinkActive="router-link-active" >
-                        <span class="nav-text">Mudar de Contexto</span>
+                    <li routerLinkActive="active">
+                      <a class="sidenav-item-link" [routerLink]="['/context']" >
+                        <span class="nav-text">Escolher Contexto</span>
                       </a>
                     </li>
                 </div>
@@ -54,7 +53,7 @@
             </li>
 
             <!-- ORÇAMENTO -->
-            <li class="li_nav " routerLinkActive="active">
+            <li *ngIf="userService.currentContext" class="li_nav " routerLinkActive="active">
               <a [routerLink]="['/budget']">
                 <i class="mdi mdi-script-text"></i> <span class="nav-label">Orçamento</span>
               </a>
@@ -63,21 +62,21 @@
             <hr class="separator mb-0" />
 
             <!-- TODAS AS CONTAS -->
-            <li class="li_nav" routerLinkActive="active">
+            <li *ngIf="userService.currentContext" class="li_nav" routerLinkActive="active">
               <a [routerLink]="['/transactions', 'all-accounts']" >
                 <i class="mdi mdi-bank"></i> <span class="nav-label">Todas as Contas</span>
               </a>
             </li>
 
             <!-- TODAS AS CONTAS -->
-            <li class="li_nav">
+            <li *ngIf="userService.currentContext" class="li_nav">
               <a href="#" data-toggle="modal" data-target="#novaContaModal">
                 <i class="mdi mdi-plus"></i> <span class="nav-label">Nova Conta</span>
               </a>
             </li>
 
             <!-- ABERTAS -->
-            <li  class="has-sub expand" >
+            <li *ngIf="userService.currentContext"  class="has-sub expand" >
               <a class="sidenav-item-link" href="javascript:void(0)" data-toggle="collapse" data-target="#abertas"
                 aria-expanded="false" aria-controls="abertas">
                 <i class="mdi mdi-currency-usd"></i>
@@ -108,7 +107,7 @@
             </li>
 
             <!-- ENCERRADAS -->
-            <li  class="has-sub" >
+            <li *ngIf="userService.currentContext"  class="has-sub" >
               <a class="sidenav-item-link" href="javascript:void(0)" data-toggle="collapse" data-target="#encerradas"
                 aria-expanded="false" aria-controls="encerradas">
                 <i class="mdi mdi-archive"></i>
@@ -126,17 +125,17 @@
               </ul>
             </li>
 
-            <hr class="separator mb-0" />
+            <hr *ngIf="userService.currentContext" class="separator mb-0" />
 
             <!-- CONTATOS -->
-            <li class="li_nav" routerLinkActive="active">
+            <li *ngIf="userService.currentContext" class="li_nav" routerLinkActive="active">
               <a [routerLink]="['/payees']" >
                 <i class="mdi mdi-contacts"></i> <span class="nav-label">Contatos</span>
               </a>
             </li>
 
             <!-- RELATÓRIOS -->
-            <li  class="has-sub" >
+            <li *ngIf="userService.currentContext"  class="has-sub" >
               <a class="sidenav-item-link" href="javascript:void(0)" data-toggle="collapse" data-target="#reports"
                 aria-expanded="false" aria-controls="reports">
                 <i class="mdi mdi-poll"></i>

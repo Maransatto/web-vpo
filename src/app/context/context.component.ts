@@ -1,3 +1,4 @@
+import { Context } from './../models/context';
 import { UserService } from './../services/user.service';
 import { ShowMessageService } from './../show-message.service';
 import { ServerContextService } from './../services/server-context.service';
@@ -28,17 +29,21 @@ export class ContextComponent implements OnInit {
     );
   }
 
-  deleteUserContext(contextId) {
-    this.serverContextService.deleteContext(contextId).subscribe(
+  deleteUserContext(context: Context) {
+    this.serverContextService.deleteContext(context.id_contexto).subscribe(
       (data) => {
         console.log('deleted');
-        this.userService.deleteContext(contextId);
+        this.userService.deleteContext(context.id_contexto);
       },
       (error) => {
         console.error(error);
         this.showMessageService.error(error.error.message);
       }
     );
+  }
+
+  setCurrentContext(context: Context) {
+    this.userService.setCurrentContext(context);
   }
 
 }

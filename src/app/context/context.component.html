@@ -5,14 +5,17 @@
   <div class="card-body">
     <div class="row">
       <div class="col-12">
-        <p class="mb-5">Você pode fazer orçamento em diversos contextos diferentes. Como por exemplo administrar o orçamento familiar sem misturar com o orçamento de sua empresa.</p>
+        <p class="mb-5">
+          Você pode fazer orçamento em diversos contextos, como por exemplo familiar, ou negócios, sem que um afete o outro.<br>
+          Selecione abaixo o contexto que deseja utilizar
+        </p>
       </div>
       <div class="col-md-4 col-xl-3" *ngFor="let context of userService.contexts">
         <div class="card py-3 mb-4">
           <div class="card-body text-center">
             <h5 class="card-title text-primary">{{ context.nome }}</h5>
-            <button class="mdi mdi-delete mr-1 btn btn-outline-danger btn-sm" (click)="deleteUserContext(context.id_contexto)" > </button>
-            <button class="mdi mdi-arrow-expand-up mr-1 btn btn-outline-primary btn-sm"> Entrar</button>
+            <button class="mdi mdi-delete mr-1 btn btn-outline-danger btn-sm" (click)="deleteUserContext(context)" > </button>
+            <button class="mdi mdi-arrow-expand-up mr-1 btn btn-outline-primary btn-sm" (click)="setCurrentContext(context)" > Entrar</button>
           </div>
         </div>
       </div>

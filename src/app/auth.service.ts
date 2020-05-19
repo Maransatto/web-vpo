@@ -25,9 +25,9 @@ export class AuthService implements CanActivate {
 
   rootRedirect(userState: UserState) {
     const pathname = window.location.pathname;
-    if (['/', '/root', '/signin', '/signup', '/budget'].includes(pathname)) {
+    if (['/', '/root', '/signin', '/signup', '/budget', '/context'].includes(pathname)) {
       if (UserService.isAuthenticated(userState)) {
-        this.router.navigate(['/budget']);
+        this.router.navigate(['/context']);
       } else {
         this.router.navigateByUrl('/signin', { replaceUrl: true });
       }
