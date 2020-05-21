@@ -1,3 +1,4 @@
+import { Account } from './../models/account';
 import { Context } from './../models/context';
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable } from 'rxjs';
@@ -114,6 +115,13 @@ export class UserService {
   setCurrentContext(context: Context): void {
     const state = this.state;
     state.currentContext = context;
+    this._state$.next(state);
+    this.save();
+  }
+
+  setCurrentAccounts(accounts: Account[]): void {
+    const state = this.state;
+    this.state.currentContext.accounts = accounts;
     this._state$.next(state);
     this.save();
   }

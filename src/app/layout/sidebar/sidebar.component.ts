@@ -1,3 +1,4 @@
+import { Account } from './../../models/account';
 import { Context } from './../../models/context';
 import { UserService } from './../../services/user.service';
 import { ShowMessageService } from './../../show-message.service';
@@ -16,8 +17,6 @@ declare var $: any;
 })
 export class SidebarComponent implements OnInit {
 
-  nomeNovaConta: string;
-
   formNewContext: FormGroup;
 
   constructor(
@@ -35,10 +34,6 @@ export class SidebarComponent implements OnInit {
     this.formNewContext = new FormGroup({
       nome: new FormControl('', [Validators.required])
     });
-  }
-
-  onCriarContextoNovo() {
-    console.log('novo contexto criado');
   }
 
   onCriarContaNova() {

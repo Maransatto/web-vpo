@@ -44,7 +44,7 @@ export class SignUpComponent implements OnInit {
       this.showMessage.success('Usuário cadastrado com sucesso');
       this.router.navigate(['/signin']);
     }, error => {
-      console.log(error);
+      console.error(error);
       this.errMsg = error.error.message;
     });
   }

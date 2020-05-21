@@ -4,6 +4,7 @@ import { UserService } from './../services/user.service';
 import { ShowMessageService } from './../show-message.service';
 import { ServerContextService } from './../services/server-context.service';
 import { Component, OnInit } from '@angular/core';
+import { Account } from '../models/account';
 
 @Component({
   selector: 'app-context',
@@ -21,7 +22,6 @@ export class ContextComponent implements OnInit {
 
   ngOnInit() {
     this.getUserContexts();
-    console.log('userService Contexts', this.userService.contexts);
   }
 
   getUserContexts() {
@@ -34,7 +34,6 @@ export class ContextComponent implements OnInit {
   deleteUserContext(context: Context) {
     this.serverContextService.deleteContext(context.id_contexto).subscribe(
       (data) => {
-        console.log('deleted');
         this.userService.deleteContext(context.id_contexto);
       },
       (error) => {
@@ -44,9 +43,23 @@ export class ContextComponent implements OnInit {
     );
   }
 
-  setCurrentContext(context: Context) {
+  async setCurrentContext(context: Context) {
     this.userService.setCurrentContext(context);
+    this.loadAccounts(context);
+    console.log('context.component.ts -> currentContext', context);
+
     this.router.navigate(['/budget']);
+  }
+
+  loadAccounts(context: Context): void {
+    this.serverContextService.getAccounts(context.id_contexto).subscribe(
+      (data) => {
+        this.userService.setCurrentAccounts(data.contas as Account[]);
+      },
+      (error) => {
+        console.error(error);
+      }
+    );
   }
 
 }

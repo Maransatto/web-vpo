@@ -84,22 +84,10 @@
               </a>
               <ul  class="collapse show" id="abertas" data-parent="#sidebar-menu">
                 <div class="sub-menu">
-                    <li>
-                      <a class="sidenav-item-link" [routerLink]="['/transactions', 'account', 1]" routerLinkActive="router-link-active" >
-                        <span class="nav-text">Carteira</span>
+                    <li *ngFor="let conta of userService.currentContext.accounts">
+                      <a class="sidenav-item-link" [routerLink]="['/transactions', 'account', conta.id_conta]" routerLinkActive="router-link-active" >
+                        <span class="nav-text">{{ conta.nome }}</span>
                         <span class="badge badge-primary">R$ 100,00</span>
-                      </a>
-                    </li>
-                    <li>
-                      <a class="sidenav-item-link" [routerLink]="['/transactions', 'account', 2]" routerLinkActive="router-link-active">
-                        <span class="nav-text">Banco do Brasil</span>
-                        <span class="badge badge-primary">R$ 2.355,49</span>
-                      </a>
-                    </li>
-                    <li>
-                      <a class="sidenav-item-link" [routerLink]="['/transactions', 'account', 3]" routerLinkActive="router-link-active">
-                        <span class="nav-text">Nubank</span>
-                        <span class="badge badge-danger">R$ -5,00</span>
                       </a>
                     </li>
                 </div>

@@ -38,4 +38,8 @@ export class ServerContextService {
     return this.http.delete(`${SERVER_URL}/contextos/${contextId}`, this.httpOptions);
   }
 
+  public getAccounts(contextId: number): Observable<any> {
+    return this.http.get(`${SERVER_URL}/contextos/${contextId}/contas`, this.httpOptions);
+  }
+
 }
