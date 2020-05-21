@@ -18,7 +18,6 @@ export class AppComponent {
 
   initialize() {
     this.userService.load().then((state) => {
-      console.log('initialize state', state);
       this.authService.rootRedirect(state);
     });
   }
