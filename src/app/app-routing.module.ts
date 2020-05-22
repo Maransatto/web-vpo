@@ -1,14 +1,14 @@
 import { AuthService } from './auth.service';
-import { SignInComponent } from './sign-in/sign-in.component';
-import { IncomeExpenseReportComponent } from './reports/income-expense-report/income-expense-report.component';
-import { NetWorthReportComponent } from './reports/net-worth-report/net-worth-report.component';
-import { SpendingReportComponent } from './reports/spending-report/spending-report.component';
-import { PayeesComponent } from './payees/payees.component';
-import { TransactionsComponent } from './transactions/transactions.component';
-import { ContextComponent } from './context/context.component';
-import { BudgetComponent } from './budget/budget.component';
-import { LayoutComponent } from './layout/layout.component';
-import { SignUpComponent } from './sign-up/sign-up.component';
+import { SignInComponent } from './components/sign-in/sign-in.component';
+import { IncomeExpenseReportComponent } from './components/reports/income-expense-report/income-expense-report.component';
+import { NetWorthReportComponent } from './components/reports/net-worth-report/net-worth-report.component';
+import { SpendingReportComponent } from './components/reports/spending-report/spending-report.component';
+import { PayeesComponent } from './components/payees/payees.component';
+import { TransactionsComponent } from './components/transactions/transactions.component';
+import { ContextComponent } from './components/context/context.component';
+import { BudgetComponent } from './components/budget/budget.component';
+import { LayoutComponent } from './components/layout/layout.component';
+import { SignUpComponent } from './components/sign-up/sign-up.component';
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 

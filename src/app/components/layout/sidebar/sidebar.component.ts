@@ -1,8 +1,8 @@
-import { Account } from './../../models/account';
-import { Context } from './../../models/context';
-import { UserService } from './../../services/user.service';
-import { ShowMessageService } from './../../show-message.service';
-import { ServerContextService } from './../../services/server-context.service';
+import { Account } from '../../../models/account';
+import { Context } from '../../../models/context';
+import { UserService } from '../../../services/user.service';
+import { ShowMessageService } from '../../../show-message.service';
+import { ServerContextService } from '../../../services/server-context.service';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';

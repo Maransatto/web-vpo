@@ -1,10 +1,10 @@
-import { AuthService } from './../auth.service';
-import { UserService } from './../services/user.service';
+import { AuthService } from '../../auth.service';
+import { UserService } from '../../services/user.service';
 import { Router } from '@angular/router';
-import { ServerUserService } from './../services/server-user.service';
+import { ServerUserService } from '../../services/server-user.service';
 import { FormGroup, Validators, FormControl } from '@angular/forms';
 import { Component, OnInit } from '@angular/core';
-import { ShowMessageService } from '../show-message.service';
+import { ShowMessageService } from '../../show-message.service';
 
 @Component({
   selector: 'app-sign-in',
