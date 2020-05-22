@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { ServerUserService } from './../services/server-user.service';
 import { FormGroup, Validators, FormControl } from '@angular/forms';
 import { Component, OnInit } from '@angular/core';
+import { ShowMessageService } from '../show-message.service';
 
 @Component({
   selector: 'app-sign-in',
@@ -16,7 +17,7 @@ export class SignInComponent implements OnInit {
     private serverUserService: ServerUserService,
     private userService: UserService,
     private authService: AuthService,
-    private router: Router
+    private showMessageService: ShowMessageService
   ) { }
 
   form = new FormGroup({
@@ -41,6 +42,7 @@ export class SignInComponent implements OnInit {
 
     this.serverUserService.signIn(userLogin).subscribe(async data => {
       await this.userService.update(data);
+      this.userService.loadContexts().catch((error) => this.showMessageService.error(error.error.message));
       this.authService.rootRedirect(data);
     }, error => {
       console.error(error);

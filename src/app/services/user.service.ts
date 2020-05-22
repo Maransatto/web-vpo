@@ -1,3 +1,4 @@
+import { ServerContextService } from './server-context.service';
 import { Account } from './../models/account';
 import { Context } from './../models/context';
 import { Injectable } from '@angular/core';
@@ -17,7 +18,9 @@ export interface UserState {
 })
 export class UserService {
 
-  constructor() {
+  constructor(
+    private serverContextService: ServerContextService
+  ) {
     this._state$ = new BehaviorSubject(UserService.newState());
     this.state$ = this._state$.asObservable();
   }
@@ -104,17 +107,30 @@ export class UserService {
     this.save();
   }
 
-  deleteContext(contextId: number): void {
-    const state = this.state;
-    const index = this.state.contextos.findIndex(context => context.id_contexto === contextId);
-    this.state.contextos.splice(index, 1);
-    this._state$.next(state);
-    this.save();
+  deleteContext(contextId: number): Promise<any> {
+    return new Promise((resolve, reject) => {
+      this.serverContextService.deleteContext(contextId, this.userToken).subscribe(
+        (data) => {
+          const state = this.state;
+          const index = this.state.contextos.findIndex(context => context.id_contexto === contextId);
+          this.state.contextos.splice(index, 1);
+          this._state$.next(state);
+          this.save();
+          resolve();
+        },
+        (error) => {
+          console.error(error);
+          reject(error);
+        }
+      );
+
+    });
   }
 
   setCurrentContext(context: Context): void {
     const state = this.state;
     state.currentContext = context;
+    this.loadAccounts(context);
     this._state$.next(state);
     this.save();
   }
@@ -125,4 +141,48 @@ export class UserService {
     this._state$.next(state);
     this.save();
   }
+
+  loadContexts(): Promise<any> {
+    console.log('loadContexts');
+
+    return new Promise((resolve, reject) => {
+      this.serverContextService.getContexts(this.userToken).subscribe(
+        (data) => {
+          this.update(data);
+          resolve();
+        },
+        (error) => {
+          console.error(error);
+          reject(error);
+        }
+      );
+    });
+  }
+
+  loadAccounts(context: Context): void {
+    this.serverContextService.getAccounts(context.id_contexto, this.userToken).subscribe(
+      (data) => {
+        this.setCurrentAccounts(data.contas as Account[]);
+      },
+      (error) => {
+        console.error(error);
+      }
+    );
+  }
+
+  createContext(context: Context): Promise<any> {
+    return new Promise((resolve, reject) => {
+      this.serverContextService.createContext(context, this.userToken).subscribe(
+        (data) => {
+          this.addContext(data.contexto as Context);
+          resolve(data);
+        },
+        (error) => {
+          console.error(error);
+          reject(error);
+        }
+      );
+    });
+  }
+
 }

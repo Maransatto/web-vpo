@@ -45,21 +45,19 @@ export class SidebarComponent implements OnInit {
       return;
     }
 
-    const context = this.formNewContext.value;
-    this.serverContextService.createContext(context).subscribe(
-      (data) => {
-        this.userService.addContext(data.contexto as Context);
+    const context = this.formNewContext.value as Context;
+    this.userService.createContext(context)
+      .then((data) => {
         this.showMessageService.success(data.message);
         $('#novoContextoModal').modal('toggle');
         this.formNewContext.reset();
         this.router.navigate(['/context']);
-      },
-      (error) => {
+      })
+      .catch(error => {
         console.error(error);
         this.showMessageService.error(error.error.message);
         $('#novoContextoModal').modal('toggle');
-      }
-    );
+      });
 
   }
 
