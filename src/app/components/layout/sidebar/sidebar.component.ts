@@ -1,11 +1,11 @@
-import { Account } from '../../../models/account';
-import { Context } from '../../../models/context';
-import { UserService } from '../../../services/user.service';
 import { ShowMessageService } from '../../../show-message.service';
 import { ServerContextService } from '../../../services/server-context.service';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { ContextStore } from 'src/app/store/context-store';
+import { Context } from 'src/app/models/context';
+import { UserService } from 'src/app/services/user.service';
 
 declare var $: any;
 
@@ -20,9 +20,8 @@ export class SidebarComponent implements OnInit {
   formNewContext: FormGroup;
 
   constructor(
-    private serverContextService: ServerContextService,
     private showMessageService: ShowMessageService,
-    public userService: UserService,
+    public contextStore: ContextStore,
     private router: Router
   ) { }
 
@@ -46,7 +45,7 @@ export class SidebarComponent implements OnInit {
     }
 
     const context = this.formNewContext.value as Context;
-    this.userService.createContext(context)
+    this.contextStore.createContext(context)
       .then((data) => {
         this.showMessageService.success(data.message);
         $('#novoContextoModal').modal('toggle');
@@ -58,7 +57,10 @@ export class SidebarComponent implements OnInit {
         this.showMessageService.error(error.error.message);
         $('#novoContextoModal').modal('toggle');
       });
+  }
 
+  isCurrenteContextActive(): boolean {
+    return this.contextStore.state.currentContext ? true : false;
   }
 
 }

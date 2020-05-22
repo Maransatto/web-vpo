@@ -3,6 +3,7 @@ import { Context } from '../../models/context';
 import { UserService } from '../../services/user.service';
 import { ShowMessageService } from '../../show-message.service';
 import { Component, OnInit } from '@angular/core';
+import { ContextStore } from 'src/app/store/context-store';
 
 @Component({
   selector: 'app-context',
@@ -14,6 +15,7 @@ export class ContextComponent implements OnInit {
   constructor(
     private showMessageService: ShowMessageService,
     public userService: UserService,
+    public store: ContextStore,
     private router: Router
   ) { }
 
@@ -21,12 +23,11 @@ export class ContextComponent implements OnInit {
   }
 
   deleteUserContext(context: Context) {
-    this.userService.deleteContext(context.id_contexto).catch((error) => this.showMessageService.error(error.error.message));
+    this.store.deleteContext(context.id_contexto).catch((error) => this.showMessageService.error(error.error.message));
   }
 
   setCurrentContext(context: Context) {
-    this.userService.setCurrentContext(context);
+    this.store.setCurrentContext(context);
     this.router.navigate(['/budget']);
   }
-
 }

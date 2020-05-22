@@ -1,4 +1,4 @@
-<div class="card card-default" *ngIf="userService.contexts" >
+<div class="card card-default" *ngIf="(store.state$ | async).contexts" >
   <div class="card-header card-header-border-bottom">
     <h2>Contextos </h2>
   </div>
@@ -10,7 +10,7 @@
           Selecione abaixo o contexto que deseja utilizar
         </p>
       </div>
-      <div class="col-md-4 col-xl-3" *ngFor="let context of userService.contexts">
+      <div class="col-md-4 col-xl-3" *ngFor="let context of (store.state$ | async).contexts">
         <div class="card py-3 mb-4">
           <div class="card-body text-center">
             <h5 class="card-title text-primary">{{ context.nome }}</h5>

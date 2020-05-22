@@ -19,6 +19,7 @@ import { IncomeExpenseReportComponent } from './components/reports/income-expens
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { SignInComponent } from './components/sign-in/sign-in.component';
 import { ToastrModule } from 'ngx-toastr';
+import { ContextStore } from './store/context-store';
 
 @NgModule({
   declarations: [
@@ -45,7 +46,9 @@ import { ToastrModule } from 'ngx-toastr';
     BrowserAnimationsModule,
     ToastrModule.forRoot()
   ],
-  providers: [],
+  providers: [
+    ContextStore
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
