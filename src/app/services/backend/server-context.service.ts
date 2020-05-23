@@ -4,7 +4,7 @@ import { Injectable } from '@angular/core';
 
 import { SERVER_URL } from '../../../environments/environment';
 import { Context } from '../../models/context';
-import { ServerService } from '../server.service';
+import { ServerService } from './server.service';
 
 @Injectable({
   providedIn: 'root'

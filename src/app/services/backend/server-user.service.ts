@@ -3,7 +3,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 
 import { SERVER_URL } from '../../../environments/environment';
-import { ServerService } from '../server.service';
+import { ServerService } from './server.service';
 
 @Injectable({
   providedIn: 'root'

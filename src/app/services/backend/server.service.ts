@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpHeaders } from '@angular/common/http';
-import { UserState } from '../store/user-store';
+import { UserState } from '../../store/user-store';
 
 @Injectable({
   providedIn: 'root'
