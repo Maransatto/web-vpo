@@ -1,4 +1,4 @@
-import { ShowMessageService } from '../../../show-message.service';
+import { ShowMessageService } from '../../../services/show-message.service';
 import { ServerContextService } from '../../../services/server-context.service';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { Component, OnInit } from '@angular/core';

@@ -1,4 +1,4 @@
-import { AuthService } from './auth.service';
+import { AuthService } from './services/auth.service';
 import { SignInComponent } from './components/sign-in/sign-in.component';
 import { IncomeExpenseReportComponent } from './components/reports/income-expense-report/income-expense-report.component';
 import { NetWorthReportComponent } from './components/reports/net-worth-report/net-worth-report.component';

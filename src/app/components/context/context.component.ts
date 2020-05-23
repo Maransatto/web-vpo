@@ -1,7 +1,7 @@
 import { Router } from '@angular/router';
 import { Context } from '../../models/context';
 import { UserService } from '../../services/user.service';
-import { ShowMessageService } from '../../show-message.service';
+import { ShowMessageService } from '../../services/show-message.service';
 import { Component, OnInit } from '@angular/core';
 import { ContextStore } from 'src/app/store/context-store';
 

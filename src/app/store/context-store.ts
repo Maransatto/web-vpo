@@ -16,7 +16,7 @@ export class ContextStore extends Store<ContextState> {
     private serverContextService: ServerContextService,
     private userService: UserService
   ) {
-    super(new ContextState());
+    super(new ContextState(), 'context');
   }
 
   createContext(context: Context): Promise<any> {
@@ -57,9 +57,7 @@ export class ContextStore extends Store<ContextState> {
     });
   }
 
-  loadContexts(): Promise<any> {
-    console.log('loadContexts');
-
+  getUserContexts(): Promise<ContextState> {
     return new Promise((resolve, reject) => {
       this.serverContextService.getContexts(this.userService.userToken).subscribe(
         (data) => {

@@ -1,5 +1,5 @@
-import { ShowMessageService } from './show-message.service';
-import { AuthService } from './auth.service';
+import { ShowMessageService } from './services/show-message.service';
+import { AuthService } from './services/auth.service';
 import { UserService } from './services/user.service';
 import { Component } from '@angular/core';
 import { ContextStore } from './store/context-store';
@@ -23,7 +23,7 @@ export class AppComponent {
   initialize() {
     this.userService.load().then((state) => {
       if (this.userService.isAuthenticated()) {
-        this.contextStore.loadContexts().catch((error) => this.showMessageService.error(error.error.message));
+        this.contextStore.load().catch((error) => this.showMessageService.error(error.error.message));
       }
       this.authService.rootRedirect(state);
     })
