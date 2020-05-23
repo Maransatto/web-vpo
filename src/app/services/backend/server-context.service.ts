@@ -3,8 +3,8 @@ import { Observable } from 'rxjs';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 
-import { SERVER_URL } from './../../environments/environment';
-import { Context } from '../models/context';
+import { SERVER_URL } from '../../../environments/environment';
+import { Context } from '../../models/context';
 
 @Injectable({
   providedIn: 'root'

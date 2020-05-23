@@ -1,9 +1,9 @@
 import { Observable } from 'rxjs';
-import { UserService } from './user.service';
+import { UserService } from '../user.service';
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 
-import { SERVER_URL } from './../../environments/environment';
+import { SERVER_URL } from '../../../environments/environment';
 
 @Injectable({
   providedIn: 'root'
