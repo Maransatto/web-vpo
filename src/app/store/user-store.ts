@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { Context } from '../models/context';
 import { Store } from './store';
 import { ServerUserService } from '../services/backend/server-user.service';
+import { ContextStore } from './context-store';
 
 export class UserState {
   id_usuario?: number;
@@ -16,7 +17,8 @@ export class UserState {
 export class UserStore extends Store<UserState> {
 
   constructor(
-    private serverUserService: ServerUserService
+    private serverUserService: ServerUserService,
+    private contextStore: ContextStore
   ) {
     super(new UserState(), 'user');
   }
@@ -56,7 +58,7 @@ export class UserStore extends Store<UserState> {
 
   signIn(user): Promise<any> {
     return new Promise((resolve, reject) => {
-      this.serverUserService.signIn(user, this.userToken).subscribe(data => {
+      this.serverUserService.signIn(user).subscribe(data => {
         this.update(data);
         resolve(data);
       }, (error) => {
@@ -68,12 +70,17 @@ export class UserStore extends Store<UserState> {
 
   signUp(user): Promise<any> {
     return new Promise((resolve, reject) => {
-      this.serverUserService.signUp(user, this.userToken).subscribe(data => {
+      this.serverUserService.signUp(user).subscribe(data => {
         resolve(data);
       }, (error) => {
         console.error(error);
         reject(error);
       });
     });
+  }
+
+  logOut() {
+    this.clear();
+    this.contextStore.clear();
   }
 }

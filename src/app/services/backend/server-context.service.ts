@@ -1,29 +1,18 @@
 import { Observable } from 'rxjs';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 
 import { SERVER_URL } from '../../../environments/environment';
 import { Context } from '../../models/context';
-import { UserStore } from 'src/app/store/user-store';
+import { ServerService } from '../server.service';
 
 @Injectable({
   providedIn: 'root'
 })
-export class ServerContextService {
+export class ServerContextService extends ServerService {
 
-  constructor(
-    private http: HttpClient,
-    private userStore: UserStore
-  ) { }
-
-  get httpOptions() {
-    const headers = new HttpHeaders()
-      .set('Content-Type', 'application/json')
-      .set('Accept', 'application/json')
-      .set('Authorization', `Bearer ${this.userStore.userToken}`);
-    return {
-      headers
-    };
+  constructor(private http: HttpClient) {
+    super();
   }
 
   public createContext(context: Context): Observable<any> {

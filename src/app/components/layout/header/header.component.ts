@@ -30,8 +30,7 @@ export class HeaderComponent implements OnInit {
   }
 
   logout() {
-    this.userStore.clear();
-    this.contextStore.clear();
+    this.userStore.logOut();
     this.authService.rootRedirect(new UserState());
   }
 }
