@@ -1,6 +1,5 @@
 import { Router } from '@angular/router';
 import { Context } from '../../models/context';
-import { UserService } from '../../services/user.service';
 import { ShowMessageService } from '../../services/show-message.service';
 import { Component, OnInit } from '@angular/core';
 import { ContextStore } from 'src/app/store/context-store';
@@ -14,7 +13,6 @@ export class ContextComponent implements OnInit {
 
   constructor(
     private showMessageService: ShowMessageService,
-    public userService: UserService,
     public store: ContextStore,
     private router: Router
   ) { }

@@ -1,3 +1,4 @@
+import { UserStore } from './store/user-store';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 
@@ -47,7 +48,8 @@ import { ContextStore } from './store/context-store';
     ToastrModule.forRoot()
   ],
   providers: [
-    ContextStore
+    ContextStore,
+    UserStore
   ],
   bootstrap: [AppComponent]
 })

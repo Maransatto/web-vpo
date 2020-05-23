@@ -1,11 +1,9 @@
 import { AuthService } from '../../services/auth.service';
-import { UserService } from '../../services/user.service';
-import { Router } from '@angular/router';
-import { ServerUserService } from '../../services/backend/server-user.service';
 import { FormGroup, Validators, FormControl } from '@angular/forms';
 import { Component, OnInit } from '@angular/core';
 import { ShowMessageService } from '../../services/show-message.service';
 import { ContextStore } from 'src/app/store/context-store';
+import { UserStore } from 'src/app/store/user-store';
 
 @Component({
   selector: 'app-sign-in',
@@ -15,8 +13,7 @@ import { ContextStore } from 'src/app/store/context-store';
 export class SignInComponent implements OnInit {
 
   constructor(
-    private serverUserService: ServerUserService,
-    private userService: UserService,
+    private userStore: UserStore,
     private contextStore: ContextStore,
     private authService: AuthService,
     private showMessageService: ShowMessageService
@@ -42,15 +39,11 @@ export class SignInComponent implements OnInit {
       password: this.form.get('password').value
     };
 
-    this.serverUserService.signIn(userLogin).subscribe(async data => {
-      await this.userService.update(data);
-      this.contextStore.getUserContexts().catch((error) => this.showMessageService.error(error.error.message));
+    this.userStore.signIn(userLogin).then((data) => {
+      this.contextStore.getUserContexts()
+        .catch((error) => this.showMessageService.error(error.error.message));
       this.authService.rootRedirect(data);
-    }, error => {
-      console.error(error);
-      this.errMsg = error.error.message;
-    });
-
+    }).catch((error) => this.showMessageService.error(error.error.message));
   }
 
 }

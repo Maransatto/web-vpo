@@ -1,6 +1,6 @@
-import { UserService, UserState } from './user.service';
 import { Injectable } from '@angular/core';
 import { CanActivate, Router, ActivatedRouteSnapshot, RouterStateSnapshot } from '@angular/router';
+import { UserStore, UserState } from '../store/user-store';
 
 @Injectable({
   providedIn: 'root'
@@ -8,7 +8,7 @@ import { CanActivate, Router, ActivatedRouteSnapshot, RouterStateSnapshot } from
 export class AuthService implements CanActivate {
 
   constructor(
-    private userService: UserService,
+    private userStore: UserStore,
     private router: Router
   ) { }
 
@@ -16,7 +16,7 @@ export class AuthService implements CanActivate {
     next: ActivatedRouteSnapshot,
     state: RouterStateSnapshot
   ): boolean {
-    if (!this.userService.isAuthenticated()) {
+    if (!this.userStore.isAuthenticated()) {
       this.router.navigate(['/signin']);
       return false;
     }
@@ -26,7 +26,7 @@ export class AuthService implements CanActivate {
   rootRedirect(userState: UserState) {
     const pathname = window.location.pathname;
     if (['/', '/root', '/signin', '/signup', '/budget', '/context'].includes(pathname)) {
-      if (UserService.isAuthenticated(userState)) {
+      if (UserStore.isAuthenticated(userState)) {
         this.router.navigate(['/context']);
       } else {
         this.router.navigateByUrl('/signin', { replaceUrl: true });

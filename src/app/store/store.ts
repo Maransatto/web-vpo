@@ -39,6 +39,6 @@ export class Store<T> {
 
   clear() {
     localStorage.removeItem(this.localStorageRef);
-    this.setState(this.initialState);
+    this._state$.next({} as T);
   }
 }

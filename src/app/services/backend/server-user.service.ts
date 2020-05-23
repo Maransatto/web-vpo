@@ -1,5 +1,4 @@
 import { Observable } from 'rxjs';
-import { UserService } from '../user.service';
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 
@@ -12,24 +11,23 @@ export class ServerUserService {
 
   constructor(
     private http: HttpClient,
-    private userService: UserService
   ) { }
 
-  get httpOptions() {
+  httpOptions(token) {
     const headers = new HttpHeaders()
       .set('Content-Type', 'application/json')
       .set('Accept', 'application/json')
-      .set('Authorization', `Bearer ${this.userService.userToken}`);
+      .set('Authorization', `Bearer ${token}`);
     return {
       headers
     };
   }
 
-  public signUp(user: { nome: string, email: string, password: string }): Observable<any> {
-    return this.http.post(`${SERVER_URL}/usuarios`, user, this.httpOptions);
+  public signUp(user: { nome: string, email: string, password: string }, token): Observable<any> {
+    return this.http.post(`${SERVER_URL}/usuarios`, user, this.httpOptions(token));
   }
 
-  public signIn(user: { email: string, password: string }): Observable<any> {
-    return this.http.post(`${SERVER_URL}/usuarios/login`, user, this.httpOptions);
+  public signIn(user: { email: string, password: string }, token): Observable<any> {
+    return this.http.post(`${SERVER_URL}/usuarios/login`, user, this.httpOptions(token));
   }
 }

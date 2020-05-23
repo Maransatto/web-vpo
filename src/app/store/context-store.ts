@@ -1,5 +1,4 @@
 import { ServerContextService } from '../services/backend/server-context.service';
-import { UserService } from './../services/user.service';
 import { Injectable } from '@angular/core';
 import { Context } from '../models/context';
 import { Store } from './store';
@@ -12,16 +11,16 @@ export class ContextState {
 
 @Injectable()
 export class ContextStore extends Store<ContextState> {
+
   constructor(
     private serverContextService: ServerContextService,
-    private userService: UserService
   ) {
     super(new ContextState(), 'context');
   }
 
   createContext(context: Context): Promise<any> {
     return new Promise((resolve, reject) => {
-      this.serverContextService.createContext(context, this.userService.userToken).subscribe(
+      this.serverContextService.createContext(context).subscribe(
         (data) => {
           this.setState({
             ...this.state,
@@ -39,7 +38,7 @@ export class ContextStore extends Store<ContextState> {
 
   deleteContext(contextId: number): Promise<any> {
     return new Promise((resolve, reject) => {
-      this.serverContextService.deleteContext(contextId, this.userService.userToken).subscribe(
+      this.serverContextService.deleteContext(contextId).subscribe(
         (data) => {
           const index = this.state.contexts.findIndex(context => context.id_contexto === contextId);
           this.state.contexts.splice(index, 1);
@@ -59,7 +58,7 @@ export class ContextStore extends Store<ContextState> {
 
   getUserContexts(): Promise<ContextState> {
     return new Promise((resolve, reject) => {
-      this.serverContextService.getContexts(this.userService.userToken).subscribe(
+      this.serverContextService.getContexts().subscribe(
         (data) => {
           this.setState({
             ...this.state,
@@ -84,7 +83,7 @@ export class ContextStore extends Store<ContextState> {
   }
 
   loadAccounts(context: Context): void {
-    this.serverContextService.getAccounts(context.id_contexto, this.userService.userToken).subscribe(
+    this.serverContextService.getAccounts(context.id_contexto).subscribe(
       (data) => {
         context.accounts = data.contas as Account[];
       },

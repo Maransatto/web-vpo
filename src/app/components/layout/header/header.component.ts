@@ -1,6 +1,8 @@
 import { AuthService } from '../../../services/auth.service';
-import { UserService } from '../../../services/user.service';
 import { Component, OnInit } from '@angular/core';
+import { UserStore, UserState } from 'src/app/store/user-store';
+import { Subscription } from 'rxjs';
+import { ContextStore } from 'src/app/store/context-store';
 
 @Component({
   selector: 'app-header',
@@ -12,24 +14,24 @@ export class HeaderComponent implements OnInit {
   nomeUsuario: string;
   emailUsuario: string;
 
+  subscription: Subscription;
+
   constructor(
-    private userService: UserService,
+    private userStore: UserStore,
+    private contextStore: ContextStore,
     private authService: AuthService
-  ) { }
+  ) {
+    this.subscription = new Subscription();
+  }
 
   ngOnInit() {
-    this.nomeUsuario = this.userService.nome;
-    this.emailUsuario = this.userService.email;
+    this.nomeUsuario = this.userStore.nome;
+    this.emailUsuario = this.userStore.email;
   }
 
   logout() {
-    this.userService.load().then((state) => {
-      this.userService.clear();
-    }).finally(() => {
-      this.userService.state$.subscribe(async state => {
-        this.authService.rootRedirect(state);
-      });
-    });
+    this.userStore.clear();
+    this.contextStore.clear();
+    this.authService.rootRedirect(new UserState());
   }
-
 }
