@@ -74,22 +74,26 @@ export class ContextStore extends Store<ContextState> {
     });
   }
 
-  setCurrentContext(context: Context): void {
-    this.loadAccounts(context);
+  async setCurrentContext(context: Context): Promise<any> {
+    await this.loadAccounts(context);
     this.setState({
       ...this.state,
       currentContext: context
     });
   }
 
-  loadAccounts(context: Context): void {
-    this.serverContextService.getAccounts(context.id_contexto).subscribe(
-      (data) => {
-        context.accounts = data.contas as Account[];
-      },
-      (error) => {
-        console.error(error);
-      }
-    );
+  loadAccounts(context: Context): Promise<any> {
+    return new Promise((resolve, reject) => {
+      this.serverContextService.getAccounts(context.id_contexto).subscribe(
+        (data) => {
+          context.accounts = data.contas as Account[];
+          resolve();
+        },
+        (error) => {
+          console.error(error);
+          reject();
+        }
+      );
+    });
   }
 }

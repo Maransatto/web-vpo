@@ -84,7 +84,7 @@
               </a>
               <ul  class="collapse show" id="abertas" data-parent="#sidebar-menu">
                 <div class="sub-menu">
-                    <li *ngFor="let account of (contextStore.state$ | async).currentContext.accounts">
+                    <li *ngFor="let account of activeAccounts">
                       <a class="sidenav-item-link" [routerLink]="['/transactions', 'account', account.id_conta]" routerLinkActive="router-link-active" >
                         <span class="nav-text">{{ account.nome }}</span>
                         <span class="badge badge-primary">R$ 100,00</span>
@@ -103,9 +103,9 @@
               </a>
               <ul  class="collapse" id="encerradas" data-parent="#sidebar-menu">
                 <div class="sub-menu">
-                    <li>
-                      <a class="sidenav-item-link" [routerLink]="['/transactions', 'account', 3]" routerLinkActive="router-link-active" >
-                        <span class="nav-text">Next</span>
+                    <li *ngFor="let account of inactiveAccounts">
+                      <a class="sidenav-item-link" [routerLink]="['/transactions', 'account', account.id_conta]" routerLinkActive="router-link-active" >
+                        <span class="nav-text">{{ account.nome }}</span>
                         <span class="badge badge-primary">R$ 0,00</span>
                       </a>
                     </li>
