@@ -194,44 +194,46 @@
   <div class="modal fade" id="novaContaModal" tabindex="-1" role="dialog" aria-labelledby="novaContaTitle" aria-hidden="true">
     <div class="modal-dialog" role="document">
       <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title" id="novaContaTitle">Nova Conta</h5>
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-          </button>
-        </div>
-        <div class="modal-body">
-          <div class="form-group">
-            <label for="nomeNovaConta">Nome</label>
-            <input
-                type="text"
-                class="form-control"
-                id="nomeNovaConta"
-                placeholder="Ex: Carteira"
-            >
+        <form [formGroup]="formNewAccount" (ngSubmit)="onNewAccountSubmit()" *ngIf="formNewAccount">
+          <div class="modal-header">
+            <h5 class="modal-title" id="novaContaTitle">Nova Conta</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
           </div>
-          <div class="form-group">
-            <label for="tipoNovaConta">Tipo</label>
-            <select class="form-control" id="tipoNovaConta">
-              <option>Dinheiro</option>
-              <option>Conta Bancária</option>
-              <option>Crédito</option>
-            </select>
+          <div class="modal-body">
+            <div class="form-group">
+              <label for="nomeNovaConta">Nome</label>
+              <input
+                  type="text"
+                  class="form-control"
+                  id="nomeNovaConta"
+                  placeholder="Ex: Carteira"
+                  formControlName="nome"
+              >
+            </div>
+            <div class="form-group" *ngIf="(globalStore.state$ | async).accountTypes">
+              <label for="tipoNovaConta">Tipo</label>
+              <select class="form-control" id="tipoNovaConta" formControlName="id_tipo_conta">
+                <option *ngFor="let type of (globalStore.state$ | async).accountTypes" [value]="type.id_tipo_conta">{{ type.nome }}</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label for="saldoInicialNovaConta">Saldo Inicial</label>
+              <input
+                  type="text"
+                  class="form-control"
+                  id="saldoInicialNovaConta"
+                  placeholder="0,00"
+                  formControlName="saldo_inicial"
+              >
+            </div>
           </div>
-          <div class="form-group">
-            <label for="saldoInicialNovaConta">Saldo Inicial</label>
-            <input
-                type="text"
-                class="form-control"
-                id="saldoInicialNovaConta"
-                placeholder="0,00"
-            >
+          <div class="modal-footer">
+            <button type="button" class="btn btn-danger btn-pill" data-dismiss="modal">Cancelar</button>
+            <button type="submit" class="btn btn-primary btn-pill">Criar conta</button>
           </div>
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-danger btn-pill" data-dismiss="modal">Cancelar</button>
-          <button type="button" class="btn btn-primary btn-pill" data-dismiss="modal" >Criar conta</button>
-        </div>
+        </form>
       </div>
     </div>
   </div>

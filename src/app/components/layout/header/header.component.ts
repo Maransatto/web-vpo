@@ -3,6 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { UserStore, UserState } from 'src/app/store/user-store';
 import { Subscription } from 'rxjs';
 import { GlobalStore } from 'src/app/store/global-store';
+import { GlobalService } from 'src/app/services/global.service';
 
 @Component({
   selector: 'app-header',
@@ -18,7 +19,7 @@ export class HeaderComponent implements OnInit {
 
   constructor(
     private userStore: UserStore,
-    private globalStore: GlobalStore,
+    private globalService: GlobalService,
     private authService: AuthService
   ) {
     this.subscription = new Subscription();
@@ -31,7 +32,7 @@ export class HeaderComponent implements OnInit {
 
   logout() {
     this.userStore.logOut();
-    this.globalStore.clearEveryThing();
+    this.globalService.clearStorageData();
     this.authService.rootRedirect(new UserState());
   }
 }

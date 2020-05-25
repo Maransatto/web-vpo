@@ -18,7 +18,7 @@ export class ContextStore extends Store<ContextState> {
     super(new ContextState(), 'context');
   }
 
-  createContext(context: Context): Promise<any> {
+  create(context: Context): Promise<any> {
     return new Promise((resolve, reject) => {
       this.serverContextService.createContext(context).subscribe(
         (data) => {
@@ -75,15 +75,18 @@ export class ContextStore extends Store<ContextState> {
   }
 
   async setCurrentContext(context: Context): Promise<any> {
-    await this.loadAccounts(context);
+    await this.getAccounts(context);
     this.setState({
       ...this.state,
       currentContext: context
     });
   }
 
-  loadAccounts(context: Context): Promise<any> {
+  getAccounts(context: Context): Promise<any> {
     return new Promise((resolve, reject) => {
+      if (!context) {
+        resolve();
+      }
       this.serverContextService.getAccounts(context.id_contexto).subscribe(
         (data) => {
           context.accounts = data.contas as Account[];
@@ -94,6 +97,13 @@ export class ContextStore extends Store<ContextState> {
           reject();
         }
       );
+    });
+  }
+
+  addAccount(account: Account) {
+    this.state.currentContext.accounts.push(account);
+    this.setState({
+      ...this.state
     });
   }
 }

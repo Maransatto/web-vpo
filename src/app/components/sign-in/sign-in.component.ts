@@ -2,8 +2,8 @@ import { AuthService } from '../../services/auth.service';
 import { FormGroup, Validators, FormControl } from '@angular/forms';
 import { Component, OnInit } from '@angular/core';
 import { ShowMessageService } from '../../services/show-message.service';
-import { ContextStore } from 'src/app/store/context-store';
 import { UserStore } from 'src/app/store/user-store';
+import { GlobalService } from 'src/app/services/global.service';
 
 @Component({
   selector: 'app-sign-in',
@@ -14,7 +14,7 @@ export class SignInComponent implements OnInit {
 
   constructor(
     private userStore: UserStore,
-    private contextStore: ContextStore,
+    private globalService: GlobalService,
     private authService: AuthService,
     private showMessageService: ShowMessageService
   ) { }
@@ -40,7 +40,8 @@ export class SignInComponent implements OnInit {
     };
 
     this.userStore.signIn(userLogin).then((data) => {
-      this.contextStore.getUserContexts()
+      const context = this.userStore.state.currentContext;
+      this.globalService.loadServerData(context)
         .catch((error) => this.showMessageService.error(error.error.message));
       this.authService.rootRedirect(data);
     }).catch((error) => this.showMessageService.error(error.error.message));

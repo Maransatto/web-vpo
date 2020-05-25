@@ -6,6 +6,8 @@ import { ContextStore } from 'src/app/store/context-store';
 import { Context } from 'src/app/models/context';
 import { Subscription } from 'rxjs';
 import { Account } from 'src/app/models/account';
+import { GlobalStore } from 'src/app/store/global-store';
+import { AccountStore } from 'src/app/store/account-store';
 
 declare var $: any;
 
@@ -18,6 +20,7 @@ declare var $: any;
 export class SidebarComponent implements OnInit, OnDestroy {
 
   formNewContext: FormGroup;
+  formNewAccount: FormGroup;
   subscriptions: Subscription;
 
   public activeAccounts: Account[];
@@ -26,6 +29,8 @@ export class SidebarComponent implements OnInit, OnDestroy {
   constructor(
     private showMessageService: ShowMessageService,
     public contextStore: ContextStore,
+    public accountStore: AccountStore,
+    public globalStore: GlobalStore,
     private router: Router
   ) {
     this.subscriptions = new Subscription();
@@ -33,6 +38,7 @@ export class SidebarComponent implements OnInit, OnDestroy {
 
   ngOnInit() {
     this.buildFormNewContext();
+    this.buildFormNewAccount();
     this.getAccounts();
   }
 
@@ -46,6 +52,14 @@ export class SidebarComponent implements OnInit, OnDestroy {
     });
   }
 
+  buildFormNewAccount() {
+    this.formNewAccount = new FormGroup({
+      nome: new FormControl('', [Validators.required]),
+      id_tipo_conta: new FormControl('', [Validators.required]),
+      saldo_inicial: new FormControl('', [Validators.required])
+    });
+  }
+
   onCriarContaNova() {
     console.log('nova conta criada');
   }
@@ -56,7 +70,7 @@ export class SidebarComponent implements OnInit, OnDestroy {
     }
 
     const context = this.formNewContext.value as Context;
-    this.contextStore.createContext(context)
+    this.contextStore.create(context)
       .then((data) => {
         this.showMessageService.success(data.message);
         $('#novoContextoModal').modal('toggle');
@@ -64,9 +78,25 @@ export class SidebarComponent implements OnInit, OnDestroy {
         this.router.navigate(['/context']);
       })
       .catch(error => {
-        console.error(error);
         this.showMessageService.error(error.error.message);
-        $('#novoContextoModal').modal('toggle');
+      });
+  }
+
+  onNewAccountSubmit() {
+    if (!this.formNewAccount.valid) {
+      return;
+    }
+
+    const account = this.formNewAccount.value as Account;
+    account.id_contexto = this.contextStore.state.currentContext.id_contexto;
+    this.accountStore.create(account)
+      .then((data) => {
+        this.showMessageService.success(data.message);
+        $('#novaContaModal').modal('toggle');
+        this.formNewAccount.reset();
+        this.router.navigate(['/transactions', 'account', data.conta.id_conta]);
+      }).catch((error) => {
+        this.showMessageService.error(error.error.message);
       });
   }
 
