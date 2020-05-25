@@ -2,7 +2,7 @@ import { AuthService } from '../../../services/auth.service';
 import { Component, OnInit } from '@angular/core';
 import { UserStore, UserState } from 'src/app/store/user-store';
 import { Subscription } from 'rxjs';
-import { ContextStore } from 'src/app/store/context-store';
+import { GlobalStore } from 'src/app/store/global-store';
 
 @Component({
   selector: 'app-header',
@@ -18,7 +18,7 @@ export class HeaderComponent implements OnInit {
 
   constructor(
     private userStore: UserStore,
-    private contextStore: ContextStore,
+    private globalStore: GlobalStore,
     private authService: AuthService
   ) {
     this.subscription = new Subscription();
@@ -31,6 +31,7 @@ export class HeaderComponent implements OnInit {
 
   logout() {
     this.userStore.logOut();
+    this.globalStore.clearEveryThing();
     this.authService.rootRedirect(new UserState());
   }
 }

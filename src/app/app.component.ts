@@ -3,6 +3,7 @@ import { AuthService } from './services/auth.service';
 import { Component } from '@angular/core';
 import { ContextStore } from './store/context-store';
 import { UserStore } from './store/user-store';
+import { GlobalStore } from './store/global-store';
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
@@ -13,7 +14,7 @@ export class AppComponent {
 
   constructor(
     private userStore: UserStore,
-    private contextStore: ContextStore,
+    private globalStore: GlobalStore,
     private authService: AuthService,
     private showMessageService: ShowMessageService
   ) {
@@ -23,7 +24,7 @@ export class AppComponent {
   initialize() {
     this.userStore.load().then((state) => {
       if (this.userStore.isAuthenticated()) {
-        this.contextStore.load().catch((error) => this.showMessageService.error(error.error.message));
+        this.globalStore.loadEveryThing().catch((error) => this.showMessageService.error(error.error.message));
       }
       this.authService.rootRedirect(state);
     })

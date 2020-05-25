@@ -81,6 +81,5 @@ export class UserStore extends Store<UserState> {
 
   logOut() {
     this.clear();
-    this.contextStore.clear();
   }
 }
