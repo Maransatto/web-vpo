@@ -60,10 +60,6 @@ export class SidebarComponent implements OnInit, OnDestroy {
     });
   }
 
-  onCriarContaNova() {
-    console.log('nova conta criada');
-  }
-
   onNewContextSubmit() {
     if (!this.formNewContext.valid) {
       return;
