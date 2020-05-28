@@ -1,0 +1,10 @@
+.budget-navigation i {
+  font-size: 2.00em;
+}
+.budget-month {
+  font-size: larger;
+}
+
+.accordion-shadow .card-header .btn:after, .accordion-shadow .card-header a:after {
+  content: none !important;
+}
