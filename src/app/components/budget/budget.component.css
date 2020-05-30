@@ -8,3 +8,16 @@
 .accordion-shadow .card-header .btn:after, .accordion-shadow .card-header a:after {
   content: none !important;
 }
+
+/* input {display: block; padding: 0; margin: 0; border: 0; width: 100%;} */
+.form-group {
+  margin-bottom: 0px !important;
+}
+
+form {
+  direction: ltr
+}
+
+input {
+  direction: rtl;
+}
