@@ -40,8 +40,7 @@ export class SignInComponent implements OnInit {
     };
 
     this.userStore.signIn(userLogin).then((data) => {
-      const context = this.userStore.state.currentContext;
-      this.globalService.loadServerData(context)
+      this.globalService.loadServerData()
         .catch((error) => this.showMessageService.error(error.error.message));
       this.authService.rootRedirect(data);
     }).catch((error) => this.showMessageService.error(error.error.message));

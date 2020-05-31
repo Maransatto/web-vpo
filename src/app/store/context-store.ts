@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { Context } from '../models/context';
 import { Store } from './store';
 import { Account } from '../models/account';
+import { Budget } from '../models/budget';
 
 export class ContextState {
   contexts?: Context[];
@@ -76,20 +77,33 @@ export class ContextStore extends Store<ContextState> {
 
   async setCurrentContext(context: Context): Promise<any> {
     await this.getAccounts(context);
+    await this.getBudgets(context);
     this.setState({
       ...this.state,
-      currentContext: context
+      currentContext: context,
     });
   }
 
   getAccounts(context: Context): Promise<any> {
     return new Promise((resolve, reject) => {
-      if (!context) {
-        resolve();
-      }
       this.serverContextService.getAccounts(context.id_contexto).subscribe(
         (data) => {
           context.accounts = data.contas as Account[];
+          resolve();
+        },
+        (error) => {
+          console.error(error);
+          reject();
+        }
+      );
+    });
+  }
+
+  getBudgets(context: Context) : Promise<any> {
+    return new Promise((resolve, reject) => {
+      this.serverContextService.getBudgets(context.id_contexto).subscribe(
+        (data) => {
+          context.budgets = data.orcamentos as Budget[];
           resolve();
         },
         (error) => {

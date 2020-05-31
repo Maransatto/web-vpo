@@ -5,11 +5,11 @@
       <!-- CABEÇALHO -->
       <div class="card-header card-header-border-bottom d-flex justify-content-between">
         <span>
-          <a href="#" class="btn btn-lg budget-navigation">
+          <a class="btn btn-lg budget-navigation" (click)="goToPreviousMonth()" routerLinkActive="active" >
             <i class="mdi mdi-arrow-left-drop-circle-outline"></i>
           </a>
-          <span class="budget-month">Fevereiro 2020</span>
-          <a href="#"class="btn btn-lg budget-navigation">
+          <span class="budget-month">{{ budget.data | date: 'MMMM' }} {{ budget.data | date: 'yyyy' }}</span>
+          <a class="btn btn-lg budget-navigation" (click)="gotoNextMonth()" routerLinkActive="active">
             <i class="mdi mdi-arrow-right-drop-circle-outline"></i>
           </a>
         </span>
@@ -38,11 +38,11 @@
         <button class="btn btn-sm">
           <i class="mdi mdi-plus">Agrupamento</i>
         </button>
-        <div class="accordion accordion-shadow">
+        <div class="accordion accordion-shadow" *ngFor="let agrupamento of context.budgets[budgetIndex].agrupamentos" >
           <div class="card">
             <div class="card-header" id="agrupamento1">
               <button class="btn btn-link d-flex justify-content-between" data-toggle="collapse" data-target="#collapseFour" aria-expanded="true" aria-controls="collapseFour">
-                Agrupamento 1
+                {{ agrupamento.nome }}
                 <p>R$ 200,00</p>
               </button>
             </div>
@@ -60,35 +60,11 @@
                       </tr>
                     </thead>
                     <tbody>
-                      <tr>
-                        <td>Categoria 0</td>
-                        <td><div class="form-group input-group-sm"><input type="text" class="form-control input-sm" /></div></td>
-                        <td><div class="form-group input-group-sm"><input type="text" class="form-control input-sm" /></div></td>
-                        <td class=text-right>R$ 50,00</td>
-                      </tr>
-                      <tr>
-                        <td>Categoria 1</td>
-                        <td><div class="form-group input-group-sm"><input type="text" class="form-control input-sm" value="50,00" /></div></td>
+                      <tr *ngFor="let categoria of agrupamento.categorias">
+                        <td>{{ categoria.nome }}</td>
+                        <td><div class="form-group input-group-sm"><input type="text" class="form-control input-sm" value="{{categoria.valor_orcado}}" /></div></td>
                         <td><div class="form-group input-group-sm"><input type="text" class="form-control input-sm" /></div></td>
                         <td class=text-right>R$ 50,00</td>
-                      </tr>
-                      <tr>
-                        <td>Categoria 2</td>
-                        <td class=text-right>R$ 50,00</td>
-                        <td>R$ 25,00</td>
-                        <td>R$ 25,00</td>
-                      </tr>
-                      <tr>
-                        <td>Categoria 3</td>
-                        <td>R$ 50,00</td>
-                        <td>R$ 25,00</td>
-                        <td>R$ 25,00</td>
-                      </tr>
-                      <tr>
-                        <td>Categoria 4</td>
-                        <td>R$ 50,00</td>
-                        <td>R$ 25,00</td>
-                        <td>R$ 25,00</td>
                       </tr>
                     </tbody>
                   </table>
@@ -98,7 +74,7 @@
             </div>
           </div>
         </div>
-        <div class="accordion accordion-shadow">
+        <!-- <div class="accordion accordion-shadow">
           <div class="card">
             <div class="card-header" id="agrupamento1">
               <button class="btn btn-link d-flex justify-content-between" data-toggle="collapse" data-target="#collapseFour" aria-expanded="true" aria-controls="collapseFour">
@@ -157,7 +133,7 @@
               </div>
             </div>
           </div>
-        </div>
+        </div> -->
     </div>
   </div>
 </div>

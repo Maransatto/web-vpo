@@ -31,4 +31,8 @@ export class ServerContextService extends ServerService {
     return this.http.get(`${SERVER_URL}/contextos/${contextId}/contas`, this.httpOptions);
   }
 
+  public getBudgets(contextId: number): Observable<any> {
+    return this.http.get(`${SERVER_URL}/contextos/${contextId}/orcamentos`, this.httpOptions);
+  }
+
 }

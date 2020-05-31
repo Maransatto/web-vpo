@@ -20,11 +20,10 @@ export class GlobalService {
    * Estes métodos sempre salvam o conteúdo no localStorage
    * @param currentContext Contexto atual do usuário
    */
-  loadServerData(currentContext: Context): Promise<any> {
+  loadServerData(): Promise<any> {
     return Promise.all([
       this.globalStore.loadAccountTypes(),
-      this.contextStore.getUserContexts(),
-      this.contextStore.getAccounts(currentContext)
+      this.contextStore.getUserContexts()
     ]);
   }
 
@@ -35,7 +34,7 @@ export class GlobalService {
     return Promise.all([
       this.globalStore.load(),
       this.contextStore.load(),
-      this.accountStore.load()
+      this.accountStore.load(),
     ]);
   }
 

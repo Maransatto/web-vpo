@@ -23,7 +23,6 @@ import { ContextStore } from './store/context-store';
 import { UserStore } from './store/user-store';
 import { GlobalStore } from './store/global-store';
 import { AccountStore } from './store/account-store';
-
 @NgModule({
   declarations: [
     AppComponent,

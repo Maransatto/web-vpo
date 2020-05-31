@@ -101,7 +101,7 @@ export class SidebarComponent implements OnInit, OnDestroy {
   }
 
   getAccounts() {
-    this.subscriptions.add(this.contextStore.state$.subscribe(
+    const subscription = this.contextStore.state$.subscribe(
       (data) => {
         console.log('sidebar getAccounts', data);
 
@@ -114,7 +114,8 @@ export class SidebarComponent implements OnInit, OnDestroy {
         console.error(error);
         this.showMessageService.error(error.error.message);
       }
-    ));
+    );
+    this.subscriptions.add(subscription);
   }
 
 }
