@@ -57,7 +57,7 @@
                         <td>{{ categoria.nome }}</td>
                         <td><div class="form-group input-group-sm"><input type="text" class="form-control input-sm" [value]="categoria.valor_orcado" /></div></td>
                         <td class="text-right">R$ {{ categoria.valor_atividades }}</td>
-                        <td class="text-right">R$ {{ categoria.valor_disponivel }}</td>
+                        <td class="text-right">R$ {{ avaliableByCategory(categoria) }}</td>
                       </tr>
                     </tbody>
                   </table>

@@ -4,6 +4,7 @@ import { Context } from 'src/app/models/context';
 import { Subscription } from 'rxjs';
 import { ShowMessageService } from 'src/app/services/show-message.service';
 import { Budget } from 'src/app/models/budget';
+import { Category } from 'src/app/models/Category'
 
 @Component({
   selector: 'app-budget',
@@ -69,10 +70,17 @@ export class BudgetComponent implements OnInit, OnDestroy {
     }
   }
 
-  avaliableByGroup(id_agrupamento: number) {
-    const categorias = this.budget.agrupamentos.find(a => a.id_agrupamento === id_agrupamento).categorias;
-    return categorias.reduce((previous, current) => previous + current.valor_disponivel, 0) || 0;
+  avaliable(budgeted: number, activities: number): number {
+    return (budgeted - activities);
   }
 
+  avaliableByGroup(id_agrupamento: number): number {
+    const categorias = this.budget.agrupamentos.find(a => a.id_agrupamento === id_agrupamento).categorias;
+    return categorias.reduce((previous, current) => previous + this.avaliable(current.valor_orcado, current.valor_atividades), 0) || 0;
+  }
+
+  avaliableByCategory(categoria: Category): number {
+    return this.avaliable(categoria.valor_orcado, categoria.valor_atividades);
+  }
 
 }
