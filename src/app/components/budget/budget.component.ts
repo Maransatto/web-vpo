@@ -4,7 +4,7 @@ import { Context } from 'src/app/models/context';
 import { Subscription } from 'rxjs';
 import { ShowMessageService } from 'src/app/services/show-message.service';
 import { Budget } from 'src/app/models/budget';
-import { Category } from 'src/app/models/Category'
+import { Category } from 'src/app/models/category';
 
 @Component({
   selector: 'app-budget',
