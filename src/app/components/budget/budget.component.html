@@ -36,7 +36,7 @@
             <div class="card-header" id="agrupamento1">
               <button class="btn btn-link d-flex justify-content-between" data-toggle="collapse" [attr.data-target]="'#collapse'+agrupamento.id_agrupamento" aria-expanded="true" [attr.aria-controls]="'collapse'+agrupamento.id_agrupamento">
                 {{ agrupamento.nome }}
-                <p>R$ {{ avaliableByGroup(agrupamento.id_agrupamento) }}</p>
+                <p>{{ avaliableByGroup(agrupamento.id_agrupamento) | currency: 'BRL' }}</p>
               </button>
             </div>
 
