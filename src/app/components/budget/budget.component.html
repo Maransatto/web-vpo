@@ -20,13 +20,6 @@
           </div>
       </span>
       </div>
-
-      <!-- CORPO -->
-      <!-- <div class="card-body">
-        <button class="btn btn-sm">
-          <i class="mdi mdi-plus">Agrupamento</i>
-        </button>
-      </div> -->
     </div>
   </div>
 </div>
@@ -38,16 +31,16 @@
         <button class="btn btn-sm">
           <i class="mdi mdi-plus">Agrupamento</i>
         </button>
-        <div class="accordion accordion-shadow" *ngFor="let agrupamento of context.budgets[budgetIndex].agrupamentos" >
+        <div class="accordion accordion-shadow" *ngFor="let agrupamento of budget.agrupamentos" >
           <div class="card">
             <div class="card-header" id="agrupamento1">
-              <button class="btn btn-link d-flex justify-content-between" data-toggle="collapse" data-target="#collapseFour" aria-expanded="true" aria-controls="collapseFour">
+              <button class="btn btn-link d-flex justify-content-between" data-toggle="collapse" [attr.data-target]="'#collapse'+agrupamento.id_agrupamento" aria-expanded="true" [attr.aria-controls]="'collapse'+agrupamento.id_agrupamento">
                 {{ agrupamento.nome }}
-                <p>R$ 200,00</p>
+                <p>R$ {{ avaliableByGroup(agrupamento.id_agrupamento) }}</p>
               </button>
             </div>
 
-            <div id="collapseFour" class="collapse show" aria-labelledby="agrupamento1">
+            <div id="collapse{{agrupamento.id_agrupamento}}" class="collapse show" aria-labelledby="agrupamento1">
               <div class="card-body">
                 <div class="responsive-data-table">
                   <table class="table dt-responsive nowrap" style="width:100%">
@@ -62,9 +55,9 @@
                     <tbody>
                       <tr *ngFor="let categoria of agrupamento.categorias">
                         <td>{{ categoria.nome }}</td>
-                        <td><div class="form-group input-group-sm"><input type="text" class="form-control input-sm" value="{{categoria.valor_orcado}}" /></div></td>
-                        <td><div class="form-group input-group-sm"><input type="text" class="form-control input-sm" /></div></td>
-                        <td class=text-right>R$ 50,00</td>
+                        <td><div class="form-group input-group-sm"><input type="text" class="form-control input-sm" [value]="categoria.valor_orcado" /></div></td>
+                        <td class="text-right">R$ {{ categoria.valor_atividades }}</td>
+                        <td class="text-right">R$ {{ categoria.valor_disponivel }}</td>
                       </tr>
                     </tbody>
                   </table>
@@ -74,66 +67,7 @@
             </div>
           </div>
         </div>
-        <!-- <div class="accordion accordion-shadow">
-          <div class="card">
-            <div class="card-header" id="agrupamento1">
-              <button class="btn btn-link d-flex justify-content-between" data-toggle="collapse" data-target="#collapseFour" aria-expanded="true" aria-controls="collapseFour">
-                Agrupamento 1
-                <p>R$ 200,00</p>
-              </button>
-            </div>
 
-            <div id="collapseFour" class="collapse show" aria-labelledby="agrupamento1">
-              <div class="card-body">
-                <div class="responsive-data-table">
-                  <table class="table dt-responsive nowrap" style="width:100%">
-                    <thead>
-                      <tr>
-                        <th>Categoria</th>
-                        <th>Orçamento</th>
-                        <th>Atividade</th>
-                        <th>Disponível</th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      <tr>
-                        <td>Categoria 0</td>
-                        <td>R$ 50,00</td>
-                        <td>R$ 25,00</td>
-                        <td>R$ 25,00</td>
-                      </tr>
-                      <tr>
-                        <td>Categoria 1</td>
-                        <td>R$ 50,00</td>
-                        <td>R$ 25,00</td>
-                        <td>R$ 25,00</td>
-                      </tr>
-                      <tr>
-                        <td>Categoria 2</td>
-                        <td>R$ 50,00</td>
-                        <td>R$ 25,00</td>
-                        <td>R$ 25,00</td>
-                      </tr>
-                      <tr>
-                        <td>Categoria 3</td>
-                        <td>R$ 50,00</td>
-                        <td>R$ 25,00</td>
-                        <td>R$ 25,00</td>
-                      </tr>
-                      <tr>
-                        <td>Categoria 4</td>
-                        <td>R$ 50,00</td>
-                        <td>R$ 25,00</td>
-                        <td>R$ 25,00</td>
-                      </tr>
-                    </tbody>
-                  </table>
-                </div>
-
-              </div>
-            </div>
-          </div>
-        </div> -->
     </div>
   </div>
 </div>

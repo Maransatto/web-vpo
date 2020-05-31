@@ -69,5 +69,10 @@ export class BudgetComponent implements OnInit, OnDestroy {
     }
   }
 
+  avaliableByGroup(id_agrupamento: number) {
+    const categorias = this.budget.agrupamentos.find(a => a.id_agrupamento === id_agrupamento).categorias;
+    return categorias.reduce((previous, current) => previous + current.valor_disponivel, 0) || 0;
+  }
+
 
 }
