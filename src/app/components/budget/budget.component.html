@@ -57,7 +57,11 @@
                         <td>{{ categoria.nome }}</td>
                         <td><div class="form-group input-group-sm input-budget"><input type="text" class="form-control input-sm" [(ngModel)]="categoria.valor_orcado" /></div></td>
                         <td class="text-right">{{ categoria.valor_atividades | currency: 'BRL' }}</td>
-                        <td class="text-right">{{ avaliableByCategory(categoria) | currency: 'BRL' }}</td>
+                        <td [ngClass]="{
+                          'text-right': true,
+                          'text-success' : avaliableByCategory(categoria) > 0,
+                          'text-danger' : avaliableByCategory(categoria) < 0
+                        }">{{ avaliableByCategory(categoria) | currency: 'BRL' }}</td>
                       </tr>
                     </tbody>
                   </table>
