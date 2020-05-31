@@ -1,5 +1,7 @@
 import { Group } from './group';
+import { Injectable } from '@angular/core';
 
+@Injectable()
 export class Budget {
   constructor(
     public id_contexto: number,

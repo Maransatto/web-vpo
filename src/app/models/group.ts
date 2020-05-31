@@ -1,5 +1,7 @@
 import { Category } from './category';
+import { Injectable } from '@angular/core';
 
+@Injectable()
 export class Group {
   constructor(
     public id_agrupamento: number,
