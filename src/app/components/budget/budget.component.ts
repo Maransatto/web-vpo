@@ -2,7 +2,6 @@ import { Component, OnInit, OnDestroy } from '@angular/core';
 import { ContextStore } from 'src/app/store/context-store';
 import { Context } from 'src/app/models/context';
 import { Subscription } from 'rxjs';
-import { debounceTime, distinctUntilChanged } from 'rxjs/operators';
 import { ShowMessageService } from 'src/app/services/show-message.service';
 import { Budget } from 'src/app/models/budget';
 import { Category } from 'src/app/models/category';

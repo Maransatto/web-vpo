@@ -28,9 +28,15 @@
   <div class="col-lg-12">
     <div class="card card-default">
       <div class="card-body">
-        <button class="btn btn-sm">
-          <i class="mdi mdi-plus">Agrupamento</i>
-        </button>
+        <div class="row">
+          <div class="col-lg-12 text-right">
+            <button type="button" class="mb-1 btn btn-sm btn-secondary">
+              Novo Agrupamento
+            </button>
+          </div>
+        </div>
+        <hr>
+
         <div class="accordion accordion-shadow" *ngFor="let agrupamento of budget?.agrupamentos" >
           <div class="card">
             <div class="card-header" id="agrupamento1">
