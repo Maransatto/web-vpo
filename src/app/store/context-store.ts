@@ -1,9 +1,12 @@
+import { ServerBudgetService } from './../services/backend/server-budget.service';
 import { ServerContextService } from '../services/backend/server-context.service';
 import { Injectable } from '@angular/core';
 import { Context } from '../models/context';
 import { Store } from './store';
 import { Account } from '../models/account';
 import { Budget } from '../models/budget';
+import { Category } from '../models/category';
+import { BudgetCategory } from '../models/budgetCategory';
 
 export class ContextState {
   contexts?: Context[];
@@ -15,6 +18,7 @@ export class ContextStore extends Store<ContextState> {
 
   constructor(
     private serverContextService: ServerContextService,
+    private serverBudgetService: ServerBudgetService
   ) {
     super(new ContextState(), 'context');
   }
@@ -119,5 +123,19 @@ export class ContextStore extends Store<ContextState> {
     this.setState({
       ...this.state
     });
+  }
+
+  changeBudgetValue(budgetCategory: BudgetCategory): Promise<any> {
+    return new Promise((resolve, reject) => {
+      this.serverBudgetService.changeBudgetValue(budgetCategory).subscribe(
+        (data) => {
+          resolve();
+        },
+        (error) => {
+          console.error(error);
+          reject();
+        }
+      )
+    })
   }
 }

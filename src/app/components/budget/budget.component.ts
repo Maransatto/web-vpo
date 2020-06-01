@@ -2,6 +2,7 @@ import { Component, OnInit, OnDestroy } from '@angular/core';
 import { ContextStore } from 'src/app/store/context-store';
 import { Context } from 'src/app/models/context';
 import { Subscription } from 'rxjs';
+import { debounceTime, distinctUntilChanged } from 'rxjs/operators';
 import { ShowMessageService } from 'src/app/services/show-message.service';
 import { Budget } from 'src/app/models/budget';
 import { Category } from 'src/app/models/category';
@@ -25,7 +26,11 @@ export class BudgetComponent implements OnInit, OnDestroy {
   }
 
   get budget(): Budget {
-    return this.context.budgets[this.budgetIndex];
+    if (this.context) {
+      return this.context.budgets[this.budgetIndex];
+    } else {
+      return undefined;
+    }
   }
 
   get lastIndex(): number {
@@ -37,6 +42,7 @@ export class BudgetComponent implements OnInit, OnDestroy {
       (data) => {
         this.context = data.currentContext;
         this.budgetIndex = this.lastIndex;
+        console.log('context changed');
       },
       (error) => {
         console.error(error);

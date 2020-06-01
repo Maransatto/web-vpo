@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 @Injectable()
 export class Category {
   constructor(
+    public id_categoria: number,
     public id_orcamento: number,
     public id_agrupamento: number,
     public nome: string,

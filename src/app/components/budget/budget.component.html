@@ -1,4 +1,4 @@
-<div class="row">
+<div class="row" *ngIf="budget">
   <div class="col">
     <div class="card card-default">
 
@@ -24,14 +24,14 @@
   </div>
 </div>
 
-<div class="row">
+<div class="row" *ngIf="budget">
   <div class="col-lg-12">
     <div class="card card-default">
       <div class="card-body">
         <button class="btn btn-sm">
           <i class="mdi mdi-plus">Agrupamento</i>
         </button>
-        <div class="accordion accordion-shadow" *ngFor="let agrupamento of budget.agrupamentos" >
+        <div class="accordion accordion-shadow" *ngFor="let agrupamento of budget?.agrupamentos" >
           <div class="card">
             <div class="card-header" id="agrupamento1">
               <button class="btn btn-link d-flex justify-content-between" data-toggle="collapse" [attr.data-target]="'#collapse'+agrupamento.id_agrupamento" aria-expanded="true" [attr.aria-controls]="'collapse'+agrupamento.id_agrupamento">
@@ -55,7 +55,9 @@
                     <tbody>
                       <tr *ngFor="let categoria of agrupamento.categorias">
                         <td>{{ categoria.nome }}</td>
-                        <td><div class="form-group input-group-sm input-budget"><input type="text" class="form-control input-sm" [(ngModel)]="categoria.valor_orcado" /></div></td>
+                        <td>
+                          <app-budget-input [category]="categoria" [budget]="budget"></app-budget-input>
+                        </td>
                         <td class="text-right">{{ categoria.valor_atividades | currency: 'BRL' }}</td>
                         <td [ngClass]="{
                           'text-right': true,

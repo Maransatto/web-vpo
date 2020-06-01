@@ -27,6 +27,7 @@ import { AccountStore } from './store/account-store';
 import { LOCALE_ID } from '@angular/core';
 import localePt from '@angular/common/locales/pt';
 import { registerLocaleData } from '@angular/common';
+import { BudgetInputComponent } from './components/budget/budget-input/budget-input.component';
 
 registerLocaleData(localePt);
 @NgModule({
@@ -43,7 +44,8 @@ registerLocaleData(localePt);
     SpendingReportComponent,
     NetWorthReportComponent,
     IncomeExpenseReportComponent,
-    SignInComponent
+    SignInComponent,
+    BudgetInputComponent
   ],
   imports: [
     BrowserModule,

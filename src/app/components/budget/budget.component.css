@@ -8,20 +8,3 @@
 .accordion-shadow .card-header .btn:after, .accordion-shadow .card-header a:after {
   content: none !important;
 }
-
-.form-group {
-  margin-bottom: 0px !important;
-}
-
-form {
-  direction: ltr
-}
-
-input {
-  direction: rtl;
-}
-
-.input-budget {
-  width: 80px;
-  float: right;
-}
