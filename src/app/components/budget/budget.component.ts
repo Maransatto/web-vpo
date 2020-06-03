@@ -40,7 +40,7 @@ export class BudgetComponent implements OnInit, OnDestroy {
     const subscription = this.contextStore.state$.subscribe(
       (data) => {
         this.context = data.currentContext;
-        this.budgetIndex = this.lastIndex;
+        this.budgetIndex = this.lastIndex - 1; // mês atual como padrão (pois sempre haverá o mês seguinte)
         console.log('context changed');
       },
       (error) => {
