@@ -23,6 +23,7 @@ import { ContextStore } from './store/context-store';
 import { UserStore } from './store/user-store';
 import { GlobalStore } from './store/global-store';
 import { AccountStore } from './store/account-store';
+import { BudgetStore } from './store/budget-store';
 
 import { LOCALE_ID } from '@angular/core';
 import localePt from '@angular/common/locales/pt';
@@ -61,6 +62,7 @@ registerLocaleData(localePt);
     UserStore,
     GlobalStore,
     AccountStore,
+    BudgetStore,
     { provide: LOCALE_ID, useValue: 'pt' }
   ],
   bootstrap: [AppComponent]

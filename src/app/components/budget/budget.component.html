@@ -15,7 +15,7 @@
         </span>
         <span>
           <div class="media-body align-self-center">
-            <h4 class="text-success mb-2">R$ 1.503,40</h4>
+            <h4 class="text-success mb-2">{{ budgetStore.avaliable | currency: 'BRL' }}</h4>
             <p>para ser orçado</p>
           </div>
       </span>
@@ -33,7 +33,7 @@
             <div class="card-header" id="agrupamento1">
               <button class="btn btn-link d-flex justify-content-between" data-toggle="collapse" [attr.data-target]="'#collapse'+agrupamento.id_agrupamento" aria-expanded="true" [attr.aria-controls]="'collapse'+agrupamento.id_agrupamento">
                 {{ agrupamento.nome }}
-                <p>{{ avaliableByGroup(agrupamento.id_agrupamento) | currency: 'BRL' }}</p>
+                <p>{{ budgetStore.avaliableByGroup(agrupamento.id_agrupamento) | currency: 'BRL' }}</p>
               </button>
             </div>
 
@@ -58,9 +58,9 @@
                         <td class="text-right">{{ categoria.valor_atividades | currency: 'BRL' }}</td>
                         <td [ngClass]="{
                           'text-right': true,
-                          'text-success' : avaliableByCategory(categoria) > 0,
-                          'text-danger' : avaliableByCategory(categoria) < 0
-                        }">{{ avaliableByCategory(categoria) | currency: 'BRL' }}</td>
+                          'text-success' : budgetStore.avaliableByCategory(categoria) > 0,
+                          'text-danger' : budgetStore.avaliableByCategory(categoria) < 0
+                        }">{{ budgetStore.avaliableByCategory(categoria) | currency: 'BRL' }}</td>
                       </tr>
                     </tbody>
                   </table>

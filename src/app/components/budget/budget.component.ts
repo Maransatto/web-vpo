@@ -1,3 +1,4 @@
+import { BudgetStore } from './../../store/budget-store';
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { ContextStore } from 'src/app/store/context-store';
 import { Context } from 'src/app/models/context';
@@ -15,33 +16,44 @@ export class BudgetComponent implements OnInit, OnDestroy {
 
   context: Context;
   subscription: Subscription;
-  budgetIndex: number;
+  currentIndex: number;
+  budget: Budget;
 
   constructor(
     public contextStore: ContextStore,
+    public budgetStore: BudgetStore,
     private showMessageService: ShowMessageService
   ) {
     this.subscription = new Subscription();
-  }
-
-  get budget(): Budget {
-    if (this.context) {
-      return this.context.budgets[this.budgetIndex];
-    } else {
-      return undefined;
-    }
   }
 
   get lastIndex(): number {
     return this.context.budgets.length - 1;
   }
 
-  ngOnInit() {
+  async ngOnInit() {
+    this.subscribeToContext();
+    this.subscribeToBudget();
+  }
+
+  async subscribeToContext() {
     const subscription = this.contextStore.state$.subscribe(
       (data) => {
         this.context = data.currentContext;
-        this.budgetIndex = this.lastIndex - 1; // mês atual como padrão (pois sempre haverá o mês seguinte)
-        console.log('context changed');
+        this.setCurrentBudget(this.lastIndex - 1); // mês atual como padrão (pois sempre haverá o mês seguinte)
+      },
+      (error) => {
+        console.error(error);
+        this.showMessageService.error(error.error.message);
+      }
+    );
+    this.subscription.add(subscription);
+  }
+
+  async subscribeToBudget() {
+    const subscription = this.budgetStore.state$.subscribe(
+      (data) => {
+        this.budget = data.currentBudget;
       },
       (error) => {
         console.error(error);
@@ -55,37 +67,29 @@ export class BudgetComponent implements OnInit, OnDestroy {
     this.subscription.unsubscribe();
   }
 
+  setCurrentBudget(index: number) {
+    this.currentIndex = index;
+    this.budgetStore.setCurrentBudget(this.context.budgets[this.currentIndex]);
+  }
+
   isTheFirst() {
-    return this.budgetIndex === 0;
+    return this.currentIndex === 0;
   }
 
   isTheLast() {
-    return this.budgetIndex === this.lastIndex;
+    return this.currentIndex === this.lastIndex;
   }
 
   goToPreviousMonth() {
     if (!this.isTheFirst()) {
-      this.budgetIndex--;
+      this.setCurrentBudget(this.currentIndex - 1);
     }
   }
 
   gotoNextMonth() {
     if (!this.isTheLast()) {
-      this.budgetIndex++;
+      this.setCurrentBudget(this.currentIndex + 1);
     }
-  }
-
-  avaliable(budgeted: number, activities: number): number {
-    return (budgeted - activities);
-  }
-
-  avaliableByGroup(id_agrupamento: number): number {
-    const categorias = this.budget.agrupamentos.find(a => a.id_agrupamento === id_agrupamento).categorias;
-    return categorias.reduce((previous, current) => previous + this.avaliable(current.valor_orcado, current.valor_atividades), 0) || 0;
-  }
-
-  avaliableByCategory(categoria: Category): number {
-    return this.avaliable(categoria.valor_orcado, categoria.valor_atividades);
   }
 
 }

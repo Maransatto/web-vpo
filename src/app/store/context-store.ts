@@ -103,7 +103,7 @@ export class ContextStore extends Store<ContextState> {
     });
   }
 
-  getBudgets(context: Context) : Promise<any> {
+  getBudgets(context: Context): Promise<any> {
     return new Promise((resolve, reject) => {
       this.serverContextService.getBudgets(context.id_contexto).subscribe(
         (data) => {
@@ -135,7 +135,7 @@ export class ContextStore extends Store<ContextState> {
           console.error(error);
           reject();
         }
-      )
-    })
+      );
+    });
   }
 }
