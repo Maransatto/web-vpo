@@ -1,1 +1,32 @@
-<p>transactions works!</p>
+
+<!-- Recent Order Table -->
+<div class="card card-table-border-none recent-orders" id="recent-orders">
+  <div class="card-header justify-content-between">
+    <h2>Transações</h2>
+    <div class="date-range-report ">
+      <span></span>
+    </div>
+  </div>
+  <div class="card-body pt-0 pb-5">
+    <table class="table card-table table-responsive table-responsive-large" style="width:100%">
+      <thead>
+        <tr>
+          <th>Data</th>
+          <th>Contato</th>
+          <th>Categoria</th>
+          <th>Nota</th>
+          <th>Saída</th>
+          <th>Entrada</th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody>
+          <tr
+              app-transaction-row
+              *ngFor="let transaction of (contextStore.state$ | async).currentContext.transactions"
+              [transaction]="transaction"
+          ></tr>
+      </tbody>
+    </table>
+  </div>
+</div>

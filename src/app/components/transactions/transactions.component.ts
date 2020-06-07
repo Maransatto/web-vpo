@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ContextStore } from 'src/app/store/context-store';
 
 @Component({
   selector: 'app-transactions',
@@ -7,7 +8,9 @@ import { Component, OnInit } from '@angular/core';
 })
 export class TransactionsComponent implements OnInit {
 
-  constructor() { }
+  constructor(
+    public contextStore: ContextStore
+  ) { }
 
   ngOnInit() {
   }

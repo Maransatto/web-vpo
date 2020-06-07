@@ -30,6 +30,9 @@
               "node_modules/sleek-dashboard/dist/assets/plugins/jvectormap/jquery-jvectormap-2.0.3.css",
               "node_modules/sleek-dashboard/dist/assets/plugins/daterangepicker/daterangepicker.css",
               "node_modules/sleek-dashboard/dist/assets/plugins/toastr/toastr.min.css",
+              "node_modules/sleek-dashboard/dist/assets/plugins/data-tables/datatables.bootstrap4.min.css",
+              "node_modules/sleek-dashboard/dist/assets/plugins/data-tables/jquery.datatables.min.css",
+              "node_modules/sleek-dashboard/dist/assets/plugins/data-tables/responsive.datatables.min.css",
               "node_modules/sleek-dashboard/dist/assets/css/sleek.min.css",
               "node_modules/sleek-dashboard/dist/assets/css/styles.css"
             ],
@@ -44,6 +47,9 @@
               "node_modules/sleek-dashboard/dist/assets/plugins/daterangepicker/moment.min.js",
               "node_modules/sleek-dashboard/dist/assets/plugins/daterangepicker/daterangepicker.js",
               "node_modules/sleek-dashboard/dist/assets/plugins/toastr/toastr.min.js",
+              "node_modules/sleek-dashboard/dist/assets/plugins/data-tables/jquery.datatables.min.js",
+              "node_modules/sleek-dashboard/dist/assets/plugins/data-tables/datatables.bootstrap4.min.js",
+              "node_modules/sleek-dashboard/dist/assets/plugins/data-tables/datatables.responsive.min.js",
               "node_modules/sleek-dashboard/dist/assets/plugins/nprogress/nprogress.js",
               "node_modules/sleek-dashboard/dist/assets/js/sleek.bundle.min.js"
             ]

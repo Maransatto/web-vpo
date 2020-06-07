@@ -1,0 +1,26 @@
+  <td> {{ transaction.data | date: 'dd/MM/yyyy' }} </td>
+  <td >
+    <a class="text-dark" href="">{{ transaction.nome_contato }}</a>
+  </td>
+  <td class="d-none d-lg-table-cell" *ngIf="transaction.categorias.length > 0; else transactionEmpty">
+    {{ transaction.categorias[0]?.nome }}
+  </td>
+  <ng-template #transactionEmpty>
+    <td class="d-none d-lg-table-cell">&nbsp;</td>
+  </ng-template>
+  <td class="d-none d-lg-table-cell">{{ transaction.nota }}</td>
+  <td class="d-none d-lg-table-cell">{{ transaction.valor_saida | currency: 'BRL' }}</td>
+  <td class="d-none d-lg-table-cell">{{ transaction.valor_entrada | currency: 'BRL' }}</td>
+  <td class="text-right">
+    <div class="dropdown show d-inline-block widget-dropdown">
+      <a class="dropdown-toggle icon-burger-mini" href="" role="button" id="dropdown-recent-order1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" data-display="static"></a>
+      <ul class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdown-recent-order1">
+        <li class="dropdown-item">
+          <a href="#">View</a>
+        </li>
+        <li class="dropdown-item">
+          <a href="#">Remove</a>
+        </li>
+      </ul>
+    </div>
+  </td>

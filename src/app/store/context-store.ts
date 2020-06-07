@@ -5,8 +5,8 @@ import { Context } from '../models/context';
 import { Store } from './store';
 import { Account } from '../models/account';
 import { Budget } from '../models/budget';
-import { Category } from '../models/category';
 import { BudgetCategory } from '../models/budgetCategory';
+import { Transaction } from '../models/transaction';
 
 export class ContextState {
   contexts?: Context[];
@@ -82,6 +82,7 @@ export class ContextStore extends Store<ContextState> {
   async setCurrentContext(context: Context): Promise<any> {
     await this.getAccounts(context);
     await this.getBudgets(context);
+    await this.getTransactions(context);
     this.setState({
       ...this.state,
       currentContext: context,
@@ -108,6 +109,23 @@ export class ContextStore extends Store<ContextState> {
       this.serverContextService.getBudgets(context.id_contexto).subscribe(
         (data) => {
           context.budgets = data.orcamentos as Budget[];
+          resolve();
+        },
+        (error) => {
+          console.error(error);
+          reject();
+        }
+      );
+    });
+  }
+
+  getTransactions(context: Context): Promise<any> {
+    return new Promise((resolve, reject) => {
+      this.serverContextService.getTransactions(context.id_contexto).subscribe(
+        (data) => {
+          context.transactions = data.transacoes as Transaction[];
+          console.log('transactions', context.transactions);
+
           resolve();
         },
         (error) => {
