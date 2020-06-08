@@ -32,7 +32,10 @@ export class TransactionsComponent implements OnInit, OnDestroy {
         async (params) => {
           await this.subscribeToContext();
           if (params.accountId) {
-            this.transactions = this.transactions.filter(t => t.id_conta === parseInt(params.accountId, 10));
+            this.transactions = this.transactions
+                .filter(t => t.id_conta === parseInt(params.accountId, 10))
+                .slice()
+                .sort((a, b) => new Date(b.data).valueOf() - new Date(a.data).valueOf());
           }
           resolve();
         },
@@ -45,7 +48,9 @@ export class TransactionsComponent implements OnInit, OnDestroy {
     return new Promise((resolve, reject) => {
       const subscription = this.contextStore.state$.subscribe(
         (state) => {
-          this.transactions = state.currentContext.transactions;
+          this.transactions = state.currentContext.transactions
+              .slice()
+              .sort((a, b) => new Date(b.data).valueOf() - new Date(a.data).valueOf());
           resolve();
         },
         (error) => reject()
