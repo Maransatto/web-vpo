@@ -26,7 +26,7 @@ const routes: Routes = [
       { path: 'budget', component: BudgetComponent, canActivate: [AuthService] },
       { path: 'context', component: ContextComponent, canActivate: [AuthService] },
       { path: 'transactions/all-accounts', component: TransactionsComponent, canActivate: [AuthService] },
-      { path: 'transactions/account/:id_conta', component: TransactionsComponent, canActivate: [AuthService]},
+      { path: 'transactions/account/:accountId', component: TransactionsComponent, canActivate: [AuthService]},
       { path: 'payees', component: PayeesComponent, canActivate: [AuthService]},
       { path: 'spending', component: SpendingReportComponent, canActivate: [AuthService]},
       { path: 'net-worth', component: NetWorthReportComponent, canActivate: [AuthService]},

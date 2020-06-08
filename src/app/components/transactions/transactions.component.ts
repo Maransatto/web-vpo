@@ -1,18 +1,60 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { ContextStore } from 'src/app/store/context-store';
+import { ActivatedRoute } from '@angular/router';
+import { Transaction } from 'src/app/models/transaction';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-transactions',
   templateUrl: './transactions.component.html',
   styleUrls: ['./transactions.component.css']
 })
-export class TransactionsComponent implements OnInit {
+export class TransactionsComponent implements OnInit, OnDestroy {
+
+  transactions: Transaction[];
+  subscription: Subscription;
 
   constructor(
-    public contextStore: ContextStore
-  ) { }
-
-  ngOnInit() {
+    public contextStore: ContextStore,
+    public route: ActivatedRoute
+  ) {
+    this.subscription = new Subscription();
   }
 
+  async ngOnInit() {
+    // TODO: ao dar o subscribe na rota, definir currenteAccount em account-store
+    await this.subscribeToRoute();
+  }
+
+  async subscribeToRoute(): Promise<any> {
+    return new Promise((resolve, reject) => {
+      this.route.params.subscribe(
+        async (params) => {
+          await this.subscribeToContext();
+          if (params.accountId) {
+            this.transactions = this.transactions.filter(t => t.id_conta === parseInt(params.accountId, 10));
+          }
+          resolve();
+        },
+        (error) => reject()
+      );
+    });
+  }
+
+  async subscribeToContext(): Promise<any> {
+    return new Promise((resolve, reject) => {
+      const subscription = this.contextStore.state$.subscribe(
+        (state) => {
+          this.transactions = state.currentContext.transactions;
+          resolve();
+        },
+        (error) => reject()
+      );
+      this.subscription.add(subscription);
+    });
+  }
+
+  ngOnDestroy() {
+    this.subscription.unsubscribe();
+  }
 }

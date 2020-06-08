@@ -23,7 +23,7 @@
       <tbody>
           <tr
               app-transaction-row
-              *ngFor="let transaction of (contextStore.state$ | async).currentContext.transactions"
+              *ngFor="let transaction of transactions"
               [transaction]="transaction"
           ></tr>
       </tbody>

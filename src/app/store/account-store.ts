@@ -41,5 +41,4 @@ export class AccountStore extends Store<AccountState> {
       );
     });
   }
-
 }
