@@ -51,7 +51,7 @@
                     </thead>
                     <tbody>
                       <tr *ngFor="let categoria of agrupamento.categorias">
-                        <td>{{ categoria.nome }}</td>
+                        <td class='category-title'>{{ categoria.nome }}</td>
                         <td>
                           <app-budget-input [category]="categoria" [budget]="budget"></app-budget-input>
                         </td>

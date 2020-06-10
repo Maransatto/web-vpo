@@ -1,3 +1,17 @@
+thead th {
+  padding: 0.5rem 0.3rem !important;
+}
+thead th {
+  border-top: none;
+}
+tbody td {
+  padding: 0.3rem !important
+}
+
+td.category-title {
+  width: 60rem;
+}
+
 .budget-navigation i {
   font-size: 2.00em;
 }
@@ -7,4 +21,12 @@
 
 .accordion-shadow .card-header .btn:after, .accordion-shadow .card-header a:after {
   content: none !important;
+}
+
+.btn-link {
+  padding: 0.8rem 1.6rem !important;
+}
+
+.card-body {
+  padding: 0.8rem 1.6rem !important;
 }
