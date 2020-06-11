@@ -14,6 +14,8 @@ export class TransactionsComponent implements OnInit, OnDestroy {
   transactions: Transaction[];
   subscription: Subscription;
 
+  allSelected = false;
+
   constructor(
     public contextStore: ContextStore,
     public route: ActivatedRoute
@@ -23,6 +25,7 @@ export class TransactionsComponent implements OnInit, OnDestroy {
 
   async ngOnInit() {
     // TODO: ao dar o subscribe na rota, definir currenteAccount em account-store
+    this.allSelected = false;
     await this.subscribeToRoute();
   }
 
@@ -61,6 +64,13 @@ export class TransactionsComponent implements OnInit, OnDestroy {
 
   selectRow(transaction: Transaction) {
     transaction.selected = !transaction.selected;
+  }
+
+  selectAllRows() {
+    this.transactions.forEach(transaction => {
+      transaction.selected = !this.allSelected;
+    });
+    this.allSelected = !this.allSelected;
   }
 
   ngOnDestroy() {
