@@ -1,3 +1,8 @@
 td {
   padding: 0.3rem !important
 }
+
+.check-all {
+  width: 0.5rem;
+  padding-left: 0rem !important;
+}

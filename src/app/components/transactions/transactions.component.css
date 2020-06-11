@@ -1,5 +1,6 @@
 tbody tr {
   border-bottom: 1px solid rgb(209, 209, 209);
+  cursor: pointer;
 }
 
 thead th {
@@ -9,4 +10,13 @@ thead th {
 
 .card-table {
   margin-top: 0.5rem !important;
+}
+
+.check-all {
+  width: 0.5rem;
+}
+
+.selected-row {
+  background-color: #212a39;
+  color: #b7c0cd !important;
 }

@@ -11,6 +11,12 @@
     <table class="table card-table table-responsive table-responsive-large" style="width:100%">
       <thead>
         <tr>
+          <th class='check-all'>
+            <label class="control outlined control-checkbox checkbox-primary">
+              <input type="checkbox" checked="checked">
+              <div class="control-indicator"></div>
+            </label>
+          </th>
           <th>Data</th>
           <th>Contato</th>
           <th>Categoria</th>
@@ -25,6 +31,10 @@
               app-transaction-row
               *ngFor="let transaction of transactions"
               [transaction]="transaction"
+              [ngClass]="{
+                'selected-row': transaction.selected
+              }"
+              (click)="selectRow(transaction)"
           ></tr>
       </tbody>
     </table>

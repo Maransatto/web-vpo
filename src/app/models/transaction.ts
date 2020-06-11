@@ -14,7 +14,8 @@ export class Transaction {
     public nota: string,
     public valor_saida: number,
     public valor_entrada: number,
-    public categorias?: Category[]
+    public categorias?: Category[],
+    public selected?: boolean
   ) {
   }
 }

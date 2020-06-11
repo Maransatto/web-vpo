@@ -1,7 +1,11 @@
-  <td> {{ transaction.data | date: 'dd/MM/yyyy' }} </td>
-  <td >
-    <a class="text-dark" href="">{{ transaction.nome_contato }}</a>
+  <td>
+    <label class="control outlined control-checkbox checkbox-primary check-all">
+      <input type="checkbox" [checked]="transaction.selected" disabled>
+      <div class="control-indicator"></div>
+    </label>
   </td>
+  <td> {{ transaction.data | date: 'dd/MM/yyyy' }} </td>
+  <td >{{ transaction.nome_contato }}</td>
   <td class="d-none d-lg-table-cell" *ngIf="transaction.categorias.length > 0; else transactionEmpty">
     {{ transaction.categorias[0]?.nome }}
   </td>

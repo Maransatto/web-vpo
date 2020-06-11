@@ -59,6 +59,10 @@ export class TransactionsComponent implements OnInit, OnDestroy {
     });
   }
 
+  selectRow(transaction: Transaction) {
+    transaction.selected = !transaction.selected;
+  }
+
   ngOnDestroy() {
     this.subscription.unsubscribe();
   }
