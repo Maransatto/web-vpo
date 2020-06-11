@@ -1,30 +1,56 @@
-  <td>
+  <!-- Check -->
+  <td (click)="selectRow(transaction)">
     <label class="control outlined control-checkbox checkbox-primary check-all">
       <input type="checkbox" [checked]="transaction.selected" disabled>
       <div class="control-indicator"></div>
     </label>
   </td>
-  <td> {{ transaction.data | date: 'dd/MM/yyyy' }} </td>
-  <td >{{ transaction.nome_contato }}</td>
-  <td class="d-none d-lg-table-cell" *ngIf="transaction.categorias.length > 0; else transactionEmpty">
+
+  <!-- Date -->
+  <td (click)="selectRow(transaction)"> {{ transaction.data | date: 'dd/MM/yyyy' }} </td>
+  <!-- Contact -->
+  <td (click)="selectRow(transaction)">{{ transaction.nome_contato }}</td>
+
+  <!-- Category -->
+  <td
+    class="d-none d-lg-table-cell"
+    (click)="selectRow(transaction)"
+    *ngIf="transaction.categorias.length > 0; else emptyCategory">
     {{ transaction.categorias[0]?.nome }}
   </td>
-  <ng-template #transactionEmpty>
-    <td class="d-none d-lg-table-cell">&nbsp;</td>
+  <ng-template #emptyCategory>
+    <td class="d-none d-lg-table-cell" (click)="selectRow(transaction)">&nbsp;</td>
   </ng-template>
-  <td class="d-none d-lg-table-cell">{{ transaction.nota }}</td>
-  <td class="d-none d-lg-table-cell">{{ transaction.valor_saida | currency: 'BRL' }}</td>
-  <td class="d-none d-lg-table-cell">{{ transaction.valor_entrada | currency: 'BRL' }}</td>
-  <td class="text-right">
-    <div class="dropdown show d-inline-block widget-dropdown">
-      <a class="dropdown-toggle icon-burger-mini" href="" role="button" id="dropdown-recent-order1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" data-display="static"></a>
-      <ul class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdown-recent-order1">
-        <li class="dropdown-item">
-          <a href="#">View</a>
-        </li>
-        <li class="dropdown-item">
-          <a href="#">Remove</a>
-        </li>
-      </ul>
-    </div>
+
+  <!-- Note -->
+  <td class="d-none d-lg-table-cell" (click)="selectRow(transaction)" >{{ transaction.nota }}</td>
+
+  <!-- Outflow -->
+  <td
+    class="d-none d-lg-table-cell text-right"
+    (click)="selectRow(transaction)"
+    *ngIf="!transaction.selected; else inputOutflow">
+    {{ transaction.valor_saida | currency: 'BRL' }}
   </td>
+  <ng-template #inputOutflow>
+    <td class="d-none d-lg-table-cell">
+      <div class="form-group input-group-sm input-transaction">
+        <input #budgetInput type="text" class="form-control input-sm" [(ngModel)]="transaction.valor_saida"/>
+      </div>
+    </td>
+  </ng-template>
+
+  <!-- Inflow -->
+  <td
+    class="d-none d-lg-table-cell text-right"
+    (click)="selectRow(transaction)"
+    *ngIf="!transaction.selected; else inputInflow">
+    {{ transaction.valor_entrada | currency: 'BRL' }}
+  </td>
+  <ng-template #inputInflow>
+    <td class="d-none d-lg-table-cell">
+      <div class="form-group input-group-sm input-transaction">
+        <input #budgetInput type="text" class="form-control input-sm" [(ngModel)]="transaction.valor_entrada"/>
+      </div>
+    </td>
+  </ng-template>
