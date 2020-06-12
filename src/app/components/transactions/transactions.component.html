@@ -30,16 +30,10 @@
               app-transaction-row
               *ngFor="let transaction of transactions"
               [transaction]="transaction"
-              (click)="selectRow(transaction)"
+              [ngClass]="{
+                'selected-row': transaction.selected
+              }"
           ></tr>
-          <tr
-              app-transaction-input
-              *ngFor="let transaction of transactions"
-              [transaction]="transaction"
-              (click)="selectRow(transaction)"
-          ></tr>
-
-
       </tbody>
     </table>
   </div>

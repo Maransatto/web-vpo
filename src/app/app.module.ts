@@ -30,7 +30,6 @@ import localePt from '@angular/common/locales/pt';
 import { registerLocaleData } from '@angular/common';
 import { BudgetInputComponent } from './components/budget/budget-input/budget-input.component';
 import { TransactionRowComponent } from './components/transactions/transaction-row/transaction-row.component';
-import { TransactionInputComponent } from './components/transactions/transaction-input/transaction-input.component';
 
 registerLocaleData(localePt);
 @NgModule({
@@ -49,8 +48,7 @@ registerLocaleData(localePt);
     IncomeExpenseReportComponent,
     SignInComponent,
     BudgetInputComponent,
-    TransactionRowComponent,
-    TransactionInputComponent
+    TransactionRowComponent
   ],
   imports: [
     BrowserModule,
