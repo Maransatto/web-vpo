@@ -9,6 +9,7 @@ import { Transaction } from 'src/app/models/transaction';
 export class TransactionRowComponent implements OnInit {
 
   @Input() transaction: Transaction;
+
   constructor() { }
 
   ngOnInit() {

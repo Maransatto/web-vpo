@@ -48,9 +48,5 @@
     {{ transaction.valor_entrada | currency: 'BRL' }}
   </td>
   <ng-template #inputInflow>
-    <td class="d-none d-lg-table-cell">
-      <div class="form-group input-group-sm input-transaction">
-        <input #budgetInput type="text" class="form-control input-sm" [(ngModel)]="transaction.valor_entrada"/>
-      </div>
-    </td>
+    <td input-inflow class="d-none d-lg-table-cell" [transaction]="transaction"></td>
   </ng-template>

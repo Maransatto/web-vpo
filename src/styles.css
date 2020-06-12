@@ -1,1 +1,12 @@
 /* You can add global styles to this file, and also import other style files */
+
+.input-transaction {
+  width: 4.1rem;
+  float: right;
+  margin-bottom: 0px !important;
+}
+
+.input-transaction input {
+  direction: rtl;
+  height: 1.45rem !important;
+}
