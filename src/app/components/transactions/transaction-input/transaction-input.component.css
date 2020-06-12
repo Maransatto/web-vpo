@@ -1,0 +1,22 @@
+td {
+  padding: 0.3rem !important
+}
+
+form {
+  direction: ltr
+}
+
+input {
+  direction: rtl;
+  height: 1.45rem !important;
+}
+.check-all {
+  width: 0.5rem;
+  padding-left: 0rem !important;
+}
+
+.input-transaction {
+  width: 4.1rem;
+  float: right;
+  margin-bottom: 0px !important;
+}

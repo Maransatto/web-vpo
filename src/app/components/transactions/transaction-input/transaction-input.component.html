@@ -25,11 +25,15 @@
   <td class="d-none d-lg-table-cell" >{{ transaction.nota }}</td>
 
   <!-- Outflow -->
-  <td class="d-none d-lg-table-cell text-right">
-    {{ transaction.valor_saida | currency: 'BRL' }}
+  <td class="d-none d-lg-table-cell">
+    <div class="form-group input-group-sm input-transaction">
+      <input #budgetInput type="text" class="form-control input-sm" [(ngModel)]="transaction.valor_saida"/>
+    </div>
   </td>
 
   <!-- Inflow -->
-  <td class="d-none d-lg-table-cell text-right">
-    {{ transaction.valor_entrada | currency: 'BRL' }}
+  <td class="d-none d-lg-table-cell">
+    <div class="form-group input-group-sm input-transaction">
+      <input #budgetInput type="text" class="form-control input-sm" [(ngModel)]="transaction.valor_entrada"/>
+    </div>
   </td>
