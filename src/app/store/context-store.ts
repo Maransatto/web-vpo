@@ -1,5 +1,3 @@
-import { ServerBudgetService } from './../services/backend/server-budget.service';
-import { ServerContextService } from '../services/backend/server-context.service';
 import { Injectable } from '@angular/core';
 import { Context } from '../models/context';
 import { Store } from './store';
@@ -7,6 +5,9 @@ import { Account } from '../models/account';
 import { Budget } from '../models/budget';
 import { BudgetCategory } from '../models/budgetCategory';
 import { Transaction } from '../models/transaction';
+import { ServerContextService } from '../services/backend/server-context.service';
+import { ServerBudgetService } from '../services/backend/server-budget.service';
+import { ServerTransactionService } from '../services/backend/server-transaction.service';
 
 export class ContextState {
   contexts?: Context[];
@@ -18,7 +19,8 @@ export class ContextStore extends Store<ContextState> {
 
   constructor(
     private serverContextService: ServerContextService,
-    private serverBudgetService: ServerBudgetService
+    private serverBudgetService: ServerBudgetService,
+    private serverTransactionService: ServerTransactionService
   ) {
     super(new ContextState(), 'context');
   }
@@ -123,9 +125,8 @@ export class ContextStore extends Store<ContextState> {
     return new Promise((resolve, reject) => {
       this.serverContextService.getTransactions(context.id_contexto).subscribe(
         (data) => {
+          console.log('context-store.getTransactions', data.transacoes);
           context.transactions = data.transacoes as Transaction[];
-          console.log('transactions', context.transactions);
-
           resolve();
         },
         (error) => {
@@ -156,4 +157,21 @@ export class ContextStore extends Store<ContextState> {
       );
     });
   }
+
+  updateTransaction(transaction: Transaction): Promise<any> {
+    return new Promise((resolve, reject) => {
+      this.serverTransactionService.updateTransaction(transaction).subscribe(
+        (data) => {
+          console.log('updated transaction', transaction);
+          resolve();
+        },
+        (error) => {
+          console.error(error);
+          reject();
+        }
+      )
+    })
+  }
+
+
 }

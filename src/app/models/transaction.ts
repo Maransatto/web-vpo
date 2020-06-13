@@ -6,6 +6,7 @@ export class Transaction {
   constructor(
     public id_transacao: number,
     public id_conta: number,
+    public id_contexto: number,
     public id_contato: number,
     public nome_contato: string,
     public data: Date,

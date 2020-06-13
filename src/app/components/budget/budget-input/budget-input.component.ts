@@ -26,7 +26,10 @@ export class BudgetInputComponent implements OnInit {
   ) { }
 
   ngOnInit() {
+    this.subscribeToInputKeyUp();
+  }
 
+  subscribeToInputKeyUp() {
     fromEvent(this.input.nativeElement, 'keyup').pipe(
       map((event: any) => {
         return event.target.value;
@@ -40,9 +43,7 @@ export class BudgetInputComponent implements OnInit {
         valor
       );
       this.contextStore.changeBudgetValue(budgetValue)
-        .catch((error) => {
-          this.showMessageService.error(error);
-        });
+        .catch((error) => this.showMessageService.error(error));
     });
   }
 }

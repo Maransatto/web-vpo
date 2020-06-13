@@ -12,8 +12,7 @@ export class TransactionRowComponent implements OnInit {
 
   constructor() { }
 
-  ngOnInit() {
-  }
+  ngOnInit() { }
 
   selectRow(transaction: Transaction) {
     transaction.selected = !transaction.selected;
