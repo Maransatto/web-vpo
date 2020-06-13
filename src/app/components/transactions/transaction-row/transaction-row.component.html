@@ -33,11 +33,7 @@
     {{ transaction.valor_saida > 0 ? (transaction.valor_saida | currency: 'BRL') : '' }}
   </td>
   <ng-template #inputOutflow>
-    <td class="d-none d-lg-table-cell">
-      <div class="form-group input-group-sm input-transaction">
-        <input #budgetInput type="text" class="form-control input-sm" [(ngModel)]="transaction.valor_saida"/>
-      </div>
-    </td>
+    <td input-outflow class="d-none d-lg-table-cell" [transaction]="transaction"></td>
   </ng-template>
 
   <!-- Inflow -->

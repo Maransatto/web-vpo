@@ -31,6 +31,7 @@ import { registerLocaleData } from '@angular/common';
 import { BudgetInputComponent } from './components/budget/budget-input/budget-input.component';
 import { TransactionRowComponent } from './components/transactions/transaction-row/transaction-row.component';
 import { TransactionInputInflowComponent } from './components/transactions/transaction-input-inflow/transaction-input-inflow.component';
+import { TransactionInputOutflowComponent } from './components/transactions/transaction-input-outflow/transaction-input-outflow.component';
 
 registerLocaleData(localePt);
 @NgModule({
@@ -50,7 +51,8 @@ registerLocaleData(localePt);
     SignInComponent,
     BudgetInputComponent,
     TransactionRowComponent,
-    TransactionInputInflowComponent
+    TransactionInputInflowComponent,
+    TransactionInputOutflowComponent
   ],
   imports: [
     BrowserModule,

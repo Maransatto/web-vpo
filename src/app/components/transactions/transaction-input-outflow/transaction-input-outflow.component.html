@@ -1,0 +1,8 @@
+<div class="form-group input-group-sm input-transaction">
+  <input
+      #input
+      type="text"
+      class="form-control input-sm"
+      [(ngModel)]="transaction.valor_saida"
+      (ngModelChange)="toNumber()"/>
+</div>
