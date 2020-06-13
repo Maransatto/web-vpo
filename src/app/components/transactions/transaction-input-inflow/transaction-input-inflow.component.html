@@ -1,3 +1,9 @@
 <div class="form-group input-group-sm input-transaction">
-  <input #input type="text" class="form-control input-sm" [(ngModel)]="transaction.valor_entrada" (ngModelChange)="toNumber()"/>
+  <input
+      #input
+      type="text"
+      class="form-control input-sm"
+      [(ngModel)]="transaction.valor_entrada"
+      (ngModelChange)="toNumber()"
+      (focusout)="getOut()"/>
 </div>

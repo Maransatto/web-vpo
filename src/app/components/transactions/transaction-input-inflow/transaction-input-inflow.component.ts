@@ -46,4 +46,8 @@ export class TransactionInputInflowComponent implements OnInit {
     this.clearOutflow();
   }
 
+  getOut() {
+    this.transaction.selected = false;
+  }
+
 }
