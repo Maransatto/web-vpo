@@ -27,10 +27,10 @@
 
   <!-- Outflow -->
   <td
-    class="d-none d-lg-table-cell text-right"
+    class="d-none d-lg-table-cell text-right text-danger"
     (click)="selectRow(transaction)"
     *ngIf="!transaction.selected; else inputOutflow">
-    {{ transaction.valor_saida | currency: 'BRL' }}
+    {{ transaction.valor_saida > 0 ? (transaction.valor_saida | currency: 'BRL') : '' }}
   </td>
   <ng-template #inputOutflow>
     <td class="d-none d-lg-table-cell">
@@ -42,10 +42,10 @@
 
   <!-- Inflow -->
   <td
-    class="d-none d-lg-table-cell text-right"
+    class="d-none d-lg-table-cell text-right text-success"
     (click)="selectRow(transaction)"
     *ngIf="!transaction.selected; else inputInflow">
-    {{ transaction.valor_entrada | currency: 'BRL' }}
+    {{ transaction.valor_entrada > 0 ? (transaction.valor_entrada | currency : 'BRL') : '' }}
   </td>
   <ng-template #inputInflow>
     <td input-inflow class="d-none d-lg-table-cell" [transaction]="transaction"></td>
