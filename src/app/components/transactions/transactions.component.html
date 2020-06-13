@@ -18,6 +18,7 @@
             </label>
           </th>
           <th>Data</th>
+          <th *ngIf="!accountId" >Conta</th>
           <th>Contato</th>
           <th>Categoria</th>
           <th>Nota</th>
@@ -30,6 +31,7 @@
               app-transaction-row
               *ngFor="let transaction of transactions"
               [transaction]="transaction"
+              [accountId]="accountId"
               [ngClass]="{
                 'selected-row': transaction.selected
               }"

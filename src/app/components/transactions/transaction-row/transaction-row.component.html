@@ -8,6 +8,12 @@
 
   <!-- Date -->
   <td (click)="selectRow(transaction)"> {{ transaction.data | date: 'dd/MM/yyyy' }} </td>
+
+  <!-- Conta -->
+  <td (click)="selectRow(transaction)" *ngIf="!accountId">
+    {{ transaction.nome_conta }}
+  </td>
+
   <!-- Contact -->
   <td (click)="selectRow(transaction)">{{ transaction.nome_contato }}</td>
 

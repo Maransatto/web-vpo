@@ -12,6 +12,7 @@ import { Subscription } from 'rxjs';
 export class TransactionsComponent implements OnInit, OnDestroy {
 
   transactions: Transaction[];
+  accountId: number;
   subscription: Subscription;
 
   allSelected = false;
@@ -33,6 +34,7 @@ export class TransactionsComponent implements OnInit, OnDestroy {
     return new Promise((resolve, reject) => {
       this.route.params.subscribe(
         async (params) => {
+          this.accountId = params.accountId;
           await this.subscribeToContext();
           if (params.accountId) {
             this.transactions = this.transactions
