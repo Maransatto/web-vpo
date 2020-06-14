@@ -76,7 +76,6 @@ export class TransactionsComponent implements OnInit, OnDestroy {
   }
 
   uncheckOthers(transactionId: number) {
-    console.log('uncheckOthers but ', transactionId);
     this.transactions.forEach(transaction => {
       if (transaction.id_transacao !== transactionId) {
         transaction.selected = false;
