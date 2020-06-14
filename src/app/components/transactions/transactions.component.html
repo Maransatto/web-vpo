@@ -35,6 +35,7 @@
               [ngClass]="{
                 'selected-row': transaction.selected
               }"
+              (uncheckOthers)="uncheckOthers($event)"
           ></tr>
       </tbody>
     </table>

@@ -75,6 +75,15 @@ export class TransactionsComponent implements OnInit, OnDestroy {
     this.allSelected = !this.allSelected;
   }
 
+  uncheckOthers(transactionId: number) {
+    console.log('uncheckOthers but ', transactionId);
+    this.transactions.forEach(transaction => {
+      if (transaction.id_transacao !== transactionId) {
+        transaction.selected = false;
+      }
+    });
+  }
+
   ngOnDestroy() {
     this.subscription.unsubscribe();
   }
