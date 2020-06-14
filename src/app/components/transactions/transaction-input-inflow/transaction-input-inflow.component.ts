@@ -12,7 +12,6 @@ import { ShowMessageService } from 'src/app/services/show-message.service';
 export class TransactionInputInflowComponent implements OnInit {
 
   @Input() transaction: Transaction;
-
   @ViewChild('input', { static: true }) input: ElementRef;
 
   constructor(

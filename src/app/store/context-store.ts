@@ -159,10 +159,15 @@ export class ContextStore extends Store<ContextState> {
   }
 
   updateTransaction(transaction: Transaction): Promise<any> {
+
+    //  just to update state and call the subscriptions
+    //   so that the list updates its sort
+    this.setState({
+      ...this.state
+    });
     return new Promise((resolve, reject) => {
       this.serverTransactionService.updateTransaction(transaction).subscribe(
         (data) => {
-          console.log('updated transaction', transaction);
           resolve();
         },
         (error) => {

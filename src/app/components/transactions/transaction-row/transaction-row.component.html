@@ -7,7 +7,14 @@
   </td>
 
   <!-- Date -->
-  <td (click)="selectRow(transaction)"> {{ transaction.data | date: 'dd/MM/yyyy' }} </td>
+  <td
+    (click)="selectRow(transaction)"
+    *ngIf="!transaction.selected; else inputDate">
+    {{ transaction.data | date: 'dd/MM/yyyy' }}
+  </td>
+  <ng-template #inputDate>
+    <td input-date class="d-none d-lg-table-cell" [transaction]="transaction"></td>
+  </ng-template>
 
   <!-- Conta -->
   <td (click)="selectRow(transaction)" *ngIf="!accountId">
