@@ -1,0 +1,10 @@
+<div class="form-group input-group-sm input-transaction input-account">
+    <select
+      class="form-control input-sm"
+      [ngModel]="transaction.id_conta"
+      (ngModelChange)="onAccountChanged($event)">
+        <option
+          *ngFor="let account of accounts"
+          [value]="account.id_conta"> {{ account.nome }} </option>
+    </select>
+</div>

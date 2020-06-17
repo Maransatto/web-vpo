@@ -17,9 +17,15 @@
   </ng-template>
 
   <!-- Conta -->
-  <td (click)="selectRow(transaction)" *ngIf="!accountId">
+  <td
+    (click)="selectRow(transaction)"
+    *ngIf="!accountId && !transaction.selected; else inputAccount">
     {{ transaction.nome_conta }}
   </td>
+  <ng-template #inputAccount>
+    <td input-account *ngIf="!accountId" class="d-none d-lg-table-cell" [transaction]="transaction"></td>
+  </ng-template>
+
 
   <!-- Contact -->
   <td (click)="selectRow(transaction)">{{ transaction.nome_contato }}</td>

@@ -33,6 +33,7 @@ import { TransactionRowComponent } from './components/transactions/transaction-r
 import { TransactionInputInflowComponent } from './components/transactions/transaction-input-inflow/transaction-input-inflow.component';
 import { TransactionInputOutflowComponent } from './components/transactions/transaction-input-outflow/transaction-input-outflow.component';
 import { TransactionInputDateComponent } from './components/transactions/transaction-input-date/transaction-input-date.component';
+import { TransactionInputAccountComponent } from './components/transactions/transaction-input-account/transaction-input-account.component';
 
 registerLocaleData(localePt);
 @NgModule({
@@ -54,7 +55,8 @@ registerLocaleData(localePt);
     TransactionRowComponent,
     TransactionInputInflowComponent,
     TransactionInputOutflowComponent,
-    TransactionInputDateComponent
+    TransactionInputDateComponent,
+    TransactionInputAccountComponent
   ],
   imports: [
     BrowserModule,

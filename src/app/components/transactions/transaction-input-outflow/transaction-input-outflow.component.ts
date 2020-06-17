@@ -4,6 +4,7 @@ import { ContextStore } from 'src/app/store/context-store';
 import { ShowMessageService } from 'src/app/services/show-message.service';
 import { fromEvent } from 'rxjs';
 import { map, debounceTime, distinctUntilChanged } from 'rxjs/operators';
+
 @Component({
   selector: '[input-outflow]',
   templateUrl: './transaction-input-outflow.component.html',
